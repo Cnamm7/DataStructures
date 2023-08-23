@@ -2,6 +2,8 @@ package dataStructuresImpl;
 
 import dataStructures.BinarySearchTree;
 
+import java.util.*;
+
 public class BinarySearchTreeImpl implements BinarySearchTree {
     public BinaryTreeNode root;
     int size = 0;
@@ -155,7 +157,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
                 node = node.right == null ? node.left : node.right;
             } else {
                 node.value = findMIN(node.right).value;
-                node.right = rRemove(node.right, value);
+                node.right = rRemove(node.right, node.value);
             }
             this.size--;
         } else if (node.value < value) {
@@ -210,6 +212,87 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
 
     }
 
+    @Override
+    public List<Integer> BFS() {
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        List<Integer> result = new ArrayList<>();
+        BinaryTreeNode temp = this.root;
+        queue.add(temp);
+        while(queue.size() > 0) {
+            temp = queue.remove();
+            if (temp.left != null) {
+                queue.add(temp.left);
+            }
+            if (temp.right != null) {
+                queue.add(temp.right);
+            }
+            result.add(temp.value);
+        }
+        return result;
+    }
+
+    @Override
+    public List<Integer> DFSPreOrder() {
+        List<Integer> result = new ArrayList<>();
+
+        class Traverse {
+            Traverse(BinaryTreeNode current) {
+                result.add(current.value);
+                if (current.left != null) {
+                    new Traverse(current.left);
+                }
+                if (current.right != null) {
+                    new Traverse(current.right);
+                }
+            }
+        }
+
+        new Traverse(root);
+        return result;
+    }
+
+    @Override
+    public List<Integer> DFSPostOrder() {
+        List<Integer> result = new ArrayList<>();
+
+        class Traverse{
+            Traverse(BinaryTreeNode current) {
+                if (current.left != null) {
+                    new Traverse(current.left);
+                }
+                if (current.right != null) {
+                    new Traverse(current.right);
+                }
+                result.add(current.value);
+            }
+        }
+        new Traverse(root);
+        return result;
+    }
+
+    @Override
+    public List<Integer> DFSInOrder() {
+        List<Integer> result = new ArrayList<>();
+
+        class Traverse{
+            Traverse(BinaryTreeNode current) {
+                if (current.left != null) {
+                    new Traverse(current.left);
+                }
+                result.add(current.value);
+                if (current.right != null) {
+                    new Traverse(current.right);
+                }
+
+            }
+        }
+        new Traverse(root);
+        return result;
+    }
+
+    /*
+    to be used in print
+     */
     private int maxLevelFinder() {
         if (root == null) {
             return 0;

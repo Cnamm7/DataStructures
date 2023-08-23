@@ -45,7 +45,7 @@ public class Main {
 
     }
 
-    public static class MainBinarySearch {
+    public static class MainBinarySearchTree {
         public static void main(String[] args) {
             BinarySearchTree tree = new BinarySearchTreeImpl();
             tree.insert(18);
@@ -78,12 +78,24 @@ public class Main {
             System.out.println(recursiveTree.rLookup(10));
             recursiveTree.rInsert(11);
             recursiveTree.rInsert(8);
+            recursiveTree.rInsert(9);
             recursiveTree.rInsert(4);
             recursiveTree.rInsert(15);
+            recursiveTree.rInsert(7);
+            recursiveTree.rInsert(1);
+            recursiveTree.rInsert(20);
+            recursiveTree.rInsert(75);
+            recursiveTree.rInsert(47);
             System.out.println(recursiveTree.size());
-            recursiveTree.remove(4);
+            recursiveTree.rRemove(4);
             System.out.println(recursiveTree.size());
             System.out.println(recursiveTree.rLookup(4));
+
+            System.out.println("===========================================");
+            System.out.println(recursiveTree.BFS());
+            System.out.println(recursiveTree.DFSPreOrder());
+            System.out.println(recursiveTree.DFSPostOrder());
+            System.out.println(recursiveTree.DFSInOrder());
         }
     }
 
@@ -109,7 +121,11 @@ public class Main {
             System.out.println(Arrays.toString(arr3));
             int [] resoponse = sort.mergeSort(arr3);
             System.out.println(Arrays.toString(resoponse));
-
+            System.out.println("===================");
+            int[] arr4 = {12, 3, 1, 8, 4, 11};
+            System.out.println(Arrays.toString(arr4));
+            sort.quickSort(arr4);
+            System.out.println(Arrays.toString(arr4));
         }
     }
 

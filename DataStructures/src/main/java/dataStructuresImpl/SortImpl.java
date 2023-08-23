@@ -97,4 +97,35 @@ public class SortImpl implements Sort {
         }
         return combined;
     }
+
+    @Override
+    public void quickSort(int[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    private void quickSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int swapIndex = pivot(arr, left, right);
+            quickSort(arr, left, swapIndex - 1);
+            quickSort(arr, swapIndex + 1, right);
+        }
+    }
+    private int pivot(int[] arr, int pivotIndex, int endIndex) {
+        int swapIndex = pivotIndex;
+        for (int i = pivotIndex + 1; i <= endIndex; i++) {
+            if (arr[i] < arr[pivotIndex]) {
+                swapIndex++;
+                swap(arr, swapIndex, i);
+            }
+        }
+        swap(arr, swapIndex, pivotIndex);
+
+        return swapIndex;
+    }
+
+    private void swap(int[] arr, int swapIndex, int i) {
+        int temp = arr[swapIndex];
+        arr[swapIndex] = arr[i];
+        arr[i] = temp;
+    }
 }

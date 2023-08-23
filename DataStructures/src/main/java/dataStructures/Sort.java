@@ -5,4 +5,5 @@ public interface Sort {
     public void selectionSort(int[] arr);
     public void insertionSort(int[] arr);
     public int[] mergeSort(int[] arr);
+    public void quickSort(int[] arr);
 }
