@@ -1,13 +1,13 @@
 package Main;
 
+import dataStructures.LinkedList;
+import dataStructures.Queue;
 import dataStructuresImpl.*;
 import dataStructures.*;
 import customException.DataStructuresExeption;
+import dataStructuresImpl.Stack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void sortStack(Stack stack) {
