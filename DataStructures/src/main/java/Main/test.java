@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class test {
     public static void main(String[] args) {
@@ -130,6 +131,124 @@ public class test {
         int[] fourSumArray = {-4,-3,-2,-1,0,0,1,2,3,4};
         System.out.println(SolutionFourSum.fourSum(fourSumArray, 0));
 
+        System.out.println("====================================");
+        int[] array1 = {1, 4, 7, 24, 58, 67, 68, 69, 98};
+        int[] array2 = {2, 3, 10, 15, 45, 60};
+        System.out.println(findMedianSortedArrays(array1, array2));
+
+        System.out.println("====================================");
+        String input1 = "aaaabbbbc";
+        int charLimit1 = 1;
+        System.out.println(longestSubstringWithUniqueCharStriction(input1, charLimit1));
+
+        String input2 = "abcdefgggghijkkkl";
+        int charLimit2 = 3;
+        System.out.println(longestSubstringWithUniqueCharStriction(input2, charLimit2));
+
+        System.out.println("====================================");
+        String input1ForMinWindow = "AAbbCCddddd";
+        String searchParam1 = "CC";
+
+
+        String input2ForMinWindow = "AAABB";
+        String searchParam2 = "AABB";
+
+
+        String inpu3ForMinWindow= "AAAaaBBbbCCccDDdd";
+        String searchParam3 = "aacc";
+
+        System.out.println(minimumSubstringWindow(input1ForMinWindow, searchParam1));
+        System.out.println(minimumSubstringWindow(input2ForMinWindow, searchParam2));
+        System.out.println(minimumSubstringWindow(inpu3ForMinWindow, searchParam3));
+
+        System.out.println("====================================");
+        int[] numsForMaximumNumbersOfOne = {1,1,1,0,0,0,1,1,1,1,0};
+        int k = 2;
+        System.out.println(maximumNumbersOfOne(numsForMaximumNumbersOfOne, k));
+
+        int[] numsForMaximumNumbersOfOne1 = {0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1};
+        int k1 = 3;
+        System.out.println(maximumNumbersOfOne(numsForMaximumNumbersOfOne1, k1));
+
+        System.out.println("====================================");
+        int[] fruits = {1,2,1};
+        int[] fruits1 = {0,1,2,2};
+        int[] fruits2 = {1,2,3,2,2};
+        System.out.println(maximumNumbersOfFruits(fruits));
+        System.out.println(maximumNumbersOfFruits(fruits1));
+        System.out.println(maximumNumbersOfFruits(fruits2));
+
+        System.out.println("====================================");
+        System.out.println(rFib(10));
+        System.out.println(dynamicFib(10));
+
+        System.out.println("====================================");
+        for (String s : getAllPermutations("abc")) {
+            System.out.println(s);
+        }
+
+        System.out.println("====================================");
+        List<String> inputList = new ArrayList<>();
+        inputList.add("acg");
+        inputList.add("abdegf");
+        inputList.add("bdf");
+        inputList.add("agffdc");
+        inputList.add("agffdcb");
+        inputList.add("abcd");
+        String search = "bdf";
+        System.out.println(findIncludedCharacters(inputList, search));
+
+        System.out.println("====================================");
+        System.out.println(calculateInterest(31500000, 18, 66));
+
+        System.out.println("====================================");
+        long[] input1ForRiddle = {2, 6, 1, 12};
+        for (long value : riddle(input1ForRiddle)) {
+            System.out.print(value + " ");
+        }
+
+        for (long value : riddleChatGPT(input1ForRiddle)) {
+            System.out.print(value + " ");
+        }
+
+    }
+
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2){
+        int lengthCombined = nums1.length + nums2.length;
+
+        if (lengthCombined % 2 == 1) {
+            return solve(nums1, nums2, lengthCombined / 2, 0, nums1.length - 1, 0, nums2.length - 1);
+        } else {
+            return (solve(nums1, nums2, lengthCombined / 2, 0, nums1.length - 1, 0, nums2.length - 1)
+                    + solve(nums1, nums2, lengthCombined / 2 - 1, 0, nums1.length - 1, 0, nums2.length - 1)) / 2;
+        }
+    }
+
+    private static double solve(int[] nums1, int[] nums2, int medianIndex, int aStart, int aEnd, int bStart, int bEnd) {
+        if (aStart > aEnd) {
+            return nums2[medianIndex - aStart];
+        } else if (bStart > bEnd) {
+            return nums1[medianIndex - bStart];
+        }
+
+        int midA = (aEnd + aStart) / 2;
+        int midB = (bEnd + bStart) / 2;
+        int AValue = nums1[midA];
+        int BValue = nums2[midB];
+
+        if (midA + midB < medianIndex) {
+            if (AValue > BValue) {
+                return solve(nums1, nums2, medianIndex, aStart, aEnd, midB + 1, bEnd);
+            } else {
+                return solve(nums1, nums2, medianIndex, midA + 1, aEnd, bStart, bEnd);
+            }
+        } else {
+            if (AValue > BValue) {
+                return solve(nums1, nums2, medianIndex, aStart, midA - 1, bStart, bEnd);
+            } else {
+                return solve(nums1, nums2, medianIndex, aStart, aEnd, bStart, midB - 1);
+            }
+        }
     }
 
     public static List<Integer> findDuplicates(int[] array) {
@@ -439,7 +558,7 @@ public class test {
     }
 
 
-     public static class TreeNode {
+    public static class TreeNode {
           int val;
           TreeNode left;
           TreeNode right;
@@ -619,6 +738,291 @@ public class test {
         }
     }
 
+    public static int longestSubstringWithUniqueCharStriction(String input, int charLimit) {
+        Map<Character, Integer> mapOfChar = new HashMap<>();
+        int longestSubString = 0;
+        int left = 0;
+        int right = 0;
+        while (right < input.length()) {
+            mapOfChar.put(input.charAt(right), mapOfChar.getOrDefault(input.charAt(right), 0) + 1);
+            right++;
+
+            while (mapOfChar.size() > charLimit) {
+                mapOfChar.put(input.charAt(left), mapOfChar.get(input.charAt(left)) - 1);
+                if (mapOfChar.get(input.charAt(left)) == 0) {
+                    mapOfChar.remove(input.charAt(left));
+                }
+                left++;
+            }
+            longestSubString = Math.max(longestSubString, right - left);
+        }
+        return longestSubString;
+    }
+
+    public static String minimumSubstringWindow(String input, String searchParam) {
+        String result = "";
+        Map<Character, Integer> charMap = calculateCharMap(searchParam);
+        int left = 0;
+        int right = 0;
+        Boolean isSubStarted = false;
+        while (right < input.length()) {
+            char searchChar = input.charAt(right);
+            if (charMap.containsKey(searchChar)) {
+                isSubStarted = true;
+                charMap.put(searchChar , charMap.get(searchChar ) - 1);
+                if (charMap.get(searchChar) == 0) {
+                    charMap.remove(searchChar);
+                }
+            }
+
+
+            right++;
+            if (isSubStarted == false) {
+                left++;
+            }
+
+
+            if (charMap.size() == 0 && result == "") {
+                result = input.substring(left, right);
+                charMap = calculateCharMap(searchParam);
+                left = right;
+                isSubStarted = false;
+            } else if (charMap.size() == 0 && input.substring(left, right).length() < result.length()) {
+                result = input.substring(left, right);
+                charMap = calculateCharMap(searchParam);
+                left = right;
+                isSubStarted = false;
+            }
+        }
+        return result;
+    }
+
+
+    private static Map<Character, Integer> calculateCharMap(String searchParam) {
+        Map<Character, Integer> temp = new HashMap<>();
+        for ( int i = 0; i < searchParam.length(); i++) {
+            temp.put(searchParam.charAt(i), temp.getOrDefault(searchParam.charAt(i), 0) + 1);
+        }
+        return temp;
+    }
+
+    public static int maximumNumbersOfOne(int[] nums, int k) {
+        int right = 0;
+        int left = 0;
+        int longest = 0;
+        Queue<Integer> zeroIndexes = new LinkedList<>();
+        while (right < nums.length) {
+            if (nums[right] == 0 && k > 0) {
+                nums[right] = 1;
+                zeroIndexes.add(right);
+                k--;
+            } else if (nums[right] == 0 && k == 0 && zeroIndexes.size() > 0) {
+                int temp = zeroIndexes.remove();
+                nums[temp] = 0;
+                left = temp + 1;
+                nums[right] = 1;
+                zeroIndexes.add(right);
+            }
+
+            longest = longest < right - left + 1 ? right - left + 1 : longest;
+            right++;
+        }
+        return longest;
+    }
+
+    public static int maximumNumbersOfFruits(int[] fruits) {
+        Map<Integer, Integer> groupTypes = new HashMap<>();
+        int right = 0;
+        int left = 0;
+        int longest = 0;
+        while (right < fruits.length) {
+            if (groupTypes.size() < 2) {
+                groupTypes.put(fruits[right], right);
+            } else if (groupTypes.containsKey(fruits[right])) {
+                groupTypes.put(fruits[right], right);
+            } else {
+                int minIndex = Integer.MAX_VALUE;
+                int minKey = -1;
+                for (int key : groupTypes.keySet()) {
+                    if (groupTypes.get(key) < minIndex) {
+                        minIndex = groupTypes.get(key);
+                        minKey = key;
+                    }
+                }
+                left = minIndex + 1;
+                groupTypes.remove(minKey);
+            }
+            longest = Math.max(longest, right - left + 1);
+            right++;
+        }
+        return longest;
+    }
+
+    public static int rFib(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        return rFib(n - 1) + rFib(n - 2);
+    }
+
+    public static int dynamicFib(int n) {
+        List<Integer> answers = new ArrayList<>();
+        answers.add(0);
+        answers.add(1);
+        return dynamicFib(n, answers);
+    }
+
+    private static int dynamicFib(int n, List<Integer> answers) {
+        if (answers.size() < n + 1) {
+            int m = dynamicFib(n - 1, answers) + dynamicFib(n - 2, answers);
+            answers.add(m);
+        }
+        return answers.get(n);
+    }
+
+    public static List<String> getAllPermutations(String input) {
+        List<String> permutations = new ArrayList<>();
+        permute("", input, permutations);
+        return permutations;
+    }
+
+    private static void permute(String prefix, String remaining, List<String> permutations) {
+        int n = remaining.length();
+        if (n == 0) {
+            permutations.add(prefix);
+        } else {
+            for (int i = 0; i < n; i++) {
+                permute(prefix + remaining.charAt(i), remaining.substring(0, i) + remaining.substring(i + 1), permutations);
+            }
+        }
+    }
+
+    public static String findIncludedCharacters(List<String> input, String searchValue) {
+        String result = "";
+        int hashValue = 1;
+
+        for (int i = 0; i < searchValue.length(); i++) {
+            hashValue *= searchValue.charAt(i);
+        }
+
+        for (String in : input) {
+            if (hashFunction(in, hashValue)) {
+                if (result == "" || result.length() > in.length()) {
+                    result = in;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private static boolean hashFunction(String input, int hashValue) {
+        int inputHashValue = 1;
+
+        for (int i = 0; i < input.length(); i++) {
+            inputHashValue *= input.charAt(i);
+        }
+
+        if (inputHashValue % hashValue == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static double calculateInterest(double input, double interestPerYear, int months) {
+        double result = input;
+        double interest = (interestPerYear / 12) / 100 + 1;
+        for (int i = 0; i < months; i++) {
+            result = calculateInterest(result, interest);
+        }
+        return result;
+    }
+    private static double calculateInterest(double input, double interest) {
+        return input * interest;
+    }
+
+    static long[] riddle(long[] arr) {
+        // complete this function
+        long[] result = new long[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            result[i] = findMaxOfMin(arr, i + 1);
+        }
+        return result;
+    }
+
+    private static long findMaxOfMin(long[] arr, int groupSize) {
+        int left = 0;
+        int right = groupSize;
+        long max = Long.MIN_VALUE;
+        long min = Long.MAX_VALUE;
+        boolean isNotChanged = true;
+
+        while (right <= arr.length) {
+
+            if (isNotChanged) {
+                min = Long.MAX_VALUE;
+                int counter = left;
+                while (counter < right) {
+                    min = Math.min(min, arr[counter]);
+                    counter++;
+                }
+            } else {
+                min = Math.min(min, arr[right - 1]);
+            }
+
+            max = Math.max(max, min);
+
+            isNotChanged = arr[left] == min;
+            left++;
+            right++;
+        }
+        return max;
+    }
+    static long[] riddleChatGPT(long[] arr) {
+        int n = arr.length;
+        long[] result = new long[n];
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        // Initialize arrays to store the next smaller and previous smaller elements for each element.
+        int[] nextSmaller = new int[n];
+        int[] prevSmaller = new int[n];
+
+        // Initialize the stack for finding the next smaller element.
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && arr[i] < arr[stack.peek()]) {
+                int poppedIndex = stack.pop();
+                nextSmaller[poppedIndex] = i;
+            }
+            stack.push(i);
+        }
+
+        // Clear the stack and use it to find the previous smaller element.
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && arr[i] < arr[stack.peek()]) {
+                int poppedIndex = stack.pop();
+                prevSmaller[poppedIndex] = i;
+            }
+            stack.push(i);
+        }
+
+        // Calculate the window size for each element and find the maximum of the minimums.
+        for (int i = 0; i < n; i++) {
+            int windowSize = nextSmaller[i] - prevSmaller[i] - 1;
+            result[windowSize] = Math.max(result[windowSize], arr[i]);
+        }
+
+        // Fill in any gaps with larger values.
+        for (int i = n - 2; i >= 0; i--) {
+            result[i] = Math.max(result[i], result[i + 1]);
+        }
+
+        return result;
+    }
 }
 
 

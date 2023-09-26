@@ -3,9 +3,7 @@ package dataStructuresImpl;
 
 import dataStructures.Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class GraphImpl implements Graph {
     private final HashMap<String, List<String>> adjList = new HashMap<>();
@@ -53,5 +51,59 @@ public class GraphImpl implements Graph {
     @Override
     public void printGraph() {
         System.out.println(this.adjList);
+    }
+
+    @Override
+    public void printWithBFS(String vertex) {
+        if (!adjList.containsKey(vertex)) {
+            System.out.println("no such a vertex in this graph!");
+        }
+
+        Set<String> seen = new HashSet<>();
+        Queue<String> BFSQueue = new LinkedList<>();
+
+        BFSQueue.add(vertex);
+
+        while (BFSQueue.size() > 0) {
+            String current = BFSQueue.remove();
+
+            if (!seen.contains(current)) {
+                System.out.println(current + " ");
+                seen.add(current);
+            }
+
+            for (String vertecis : adjList.get(current)) {
+                if (!seen.contains(vertecis)) {
+                    BFSQueue.add(vertecis);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void printWithDFS(String vertex) {
+        if (!adjList.containsKey(vertex)) {
+            System.out.println("no such a vertex in this graph!");
+        }
+
+        Set<String> seen = new HashSet<>();
+        Stack<String> BFSQueue = new Stack<>();
+
+        BFSQueue.push(vertex);
+
+        while (BFSQueue.size() > 0) {
+            String current = BFSQueue.pop();
+
+            if (!seen.contains(current)) {
+                System.out.println(current + " ");
+                seen.add(current);
+            }
+
+            for (String vertecis : adjList.get(current)) {
+                if (!seen.contains(vertecis)) {
+                    BFSQueue.push(vertecis);
+                }
+            }
+        }
     }
 }

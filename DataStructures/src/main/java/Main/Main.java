@@ -145,28 +145,6 @@ public class Main {
             }
         }
 
-        public static class MainGraph {
-            public static void main(String[] args) {
-                Graph graph = new GraphImpl();
-
-                graph.addVertex("A");
-                graph.addVertex("B");
-                graph.addVertex("C");
-                graph.addVertex("D");
-
-                graph.addEdge("A", "B");
-                graph.addEdge("C", "B");
-                graph.addEdge("D", "B");
-                graph.addEdge("A", "D");
-                graph.addEdge("A", "C");
-
-                //graph.removeEdge("B", "D");
-                graph.removeVertex("B");
-
-                graph.printGraph();
-            }
-        }
-
         public static class MainOfHeap {
             public static void main(String[] args) {
                 Heap heap = new HeapImpl();
@@ -280,6 +258,41 @@ public class Main {
             queue.printFirstAndList();
             queue.printLength();
             queue.printQueue();
+        }
+    }
+
+    public static class MainGraph {
+        public static void main(String[] args) {
+            Graph graph = new GraphImpl();
+
+            graph.addVertex("A");
+            graph.addVertex("B");
+            graph.addVertex("C");
+            graph.addVertex("D");
+            graph.addVertex("E");
+            graph.addVertex("F");
+            graph.addVertex("G");
+
+            graph.addEdge("A", "B");
+            graph.addEdge("C", "B");
+            graph.addEdge("D", "B");
+            graph.addEdge("A", "D");
+            graph.addEdge("A", "C");
+            graph.addEdge("D", "E");
+            graph.addEdge("E", "F");
+            graph.addEdge("E", "G");
+            graph.addEdge("G", "D");
+            graph.addEdge("G", "B");
+
+            //graph.removeEdge("B", "D");
+            //graph.removeVertex("B");
+
+            graph.printGraph();
+
+            System.out.println("BFS:");
+            graph.printWithBFS("A");
+            System.out.println("DFS:");
+            graph.printWithDFS("A");
         }
     }
 }
