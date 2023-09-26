@@ -4,6 +4,9 @@ import dataStructures.BinarySearchTree;
 
 import java.util.*;
 
+/**
+ * implementation of BinarySearchTree Interface
+ */
 public class BinarySearchTreeImpl implements BinarySearchTree {
     public BinaryTreeNode root;
     int size = 0;
@@ -200,16 +203,9 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
         return node;
     }
 
+    @Override
     public int size() {
         return this.size;
-    }
-
-    /*
-    To Do
-     */
-    @Override
-    public void print() {
-
     }
 
     @Override

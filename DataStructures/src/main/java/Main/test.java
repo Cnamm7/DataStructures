@@ -1,13 +1,13 @@
 package Main;
 
-import com.sun.source.tree.Tree;
-
 import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
+/*
+class test for implementing common programming questions for imrpoving problem solving
+ */
 public class test {
     public static void main(String[] args) {
 
