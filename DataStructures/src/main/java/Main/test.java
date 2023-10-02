@@ -213,6 +213,7 @@ public class test {
         Integer[] arrayInput = convertToArrayOfInt("8 7 6 5 80 78 81 82 80 85 78 79 63 91 24 23 16 15 7 4 2 44 24 20 91 101 242 241 240 240 240 240 240 240 240 240 240 240 240");
         input = Arrays.asList(arrayInput);
         System.out.println(poisonousPlants(input));
+        System.out.println(poisonousPlantsBruteForceSolution(input));
         // 8 7 6 5 80 78 81 82 80 85 78 79 63 91 24 23 16 15 7 4 2 44 24 20 91 101 242 241 240 240 240 240 240 240 240 240 240 240 240
     }
 
@@ -1042,29 +1043,23 @@ public class test {
         return next;
     }
 
-//    public static int poisonousPlants(List<Integer> p) {
-//        // Write your code here
-//        //bruteForce solution:
-//        int count = 0;
-//        while (true) {
-//            List<Integer> removedPlants = new ArrayList<>();
-//            for (int i = 1; i < p.size(); i++) {
-//                if (p.get(i) > p.get(i - 1)) {
-//                    removedPlants.add(i);
-//                }
-//            }
-//            if (removedPlants.size() == 0) break;
-//            //p = remove(p, removedPlants);
-//            int reducedIndex = 0;
-//            for (int i : removedPlants) {
-//                i -= reducedIndex;
-//                p.remove(i);
-//                reducedIndex++;
-//            }
-//            count++;
-//        }
-//        return count;
-//    }
+    public static int poisonousPlantsBruteForceSolution(List<Integer> p) {
+        // Write your code here
+        //bruteForce solution:
+        int count = 0;
+        while (true) {
+            Set<Integer> removedPlants = new HashSet<>();
+            for (int i = 1; i < p.size(); i++) {
+                if (p.get(i) > p.get(i - 1)) {
+                    removedPlants.add(i);
+                }
+            }
+            if (removedPlants.size() == 0) break;
+            p = remove(p, removedPlants);
+            count++;
+        }
+        return count;
+    }
 
     private static List<Integer> remove(List<Integer> input, Set<Integer> removedPlants) {
         List<Integer> newList = new ArrayList<>();
