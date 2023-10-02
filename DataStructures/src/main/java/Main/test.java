@@ -206,11 +206,14 @@ public class test {
         for (long value : riddle(input1ForRiddle)) {
             System.out.print(value + " ");
         }
+        System.out.println();
 
-        for (long value : riddleChatGPT(input1ForRiddle)) {
-            System.out.print(value + " ");
-        }
-
+        System.out.println("====================================");
+        List<Integer> input;
+        Integer[] arrayInput = convertToArrayOfInt("8 7 6 5 80 78 81 82 80 85 78 79 63 91 24 23 16 15 7 4 2 44 24 20 91 101 242 241 240 240 240 240 240 240 240 240 240 240 240");
+        input = Arrays.asList(arrayInput);
+        System.out.println(poisonousPlants(input));
+        // 8 7 6 5 80 78 81 82 80 85 78 79 63 91 24 23 16 15 7 4 2 44 24 20 91 101 242 241 240 240 240 240 240 240 240 240 240 240 240
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2){
@@ -959,70 +962,168 @@ public class test {
         int right = groupSize;
         long max = Long.MIN_VALUE;
         long min = Long.MAX_VALUE;
-        boolean isNotChanged = true;
+        boolean isChanged = true;
 
         while (right <= arr.length) {
-
-            if (isNotChanged) {
-                min = Long.MAX_VALUE;
-                int counter = left;
-                while (counter < right) {
-                    min = Math.min(min, arr[counter]);
-                    counter++;
+            if (arr[right - 1] > max) {
+                if (isChanged) {
+                    min = calculateMinInDomain(left, right, arr);
+                } else {
+                    min = Math.min(min, arr[right - 1]);
                 }
-            } else {
-                min = Math.min(min, arr[right - 1]);
+                max = Math.max(max, min);
+                isChanged = arr[left] == min;
             }
-
-            max = Math.max(max, min);
-
-            isNotChanged = arr[left] == min;
             left++;
             right++;
         }
         return max;
     }
-    static long[] riddleChatGPT(long[] arr) {
-        int n = arr.length;
-        long[] result = new long[n];
-        Deque<Integer> stack = new ArrayDeque<>();
 
-        // Initialize arrays to store the next smaller and previous smaller elements for each element.
-        int[] nextSmaller = new int[n];
-        int[] prevSmaller = new int[n];
+    private static long calculateMinInDomain(int left, int right, long[] arr) {
+        long min = Long.MAX_VALUE;
+        while (left < right) {
+            min = Math.min(min, arr[left]);
+            left++;
+        }
+        return min;
+    }
 
-        // Initialize the stack for finding the next smaller element.
-        for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty() && arr[i] < arr[stack.peek()]) {
-                int poppedIndex = stack.pop();
-                nextSmaller[poppedIndex] = i;
-            }
-            stack.push(i);
+    static long[] riddleWithProperTimeComplexity(long[] arr) {
+        // complete this function
+        long[] prev = findPrev(arr);
+        long[] next = findNext(arr);
+        long[] result = new long[arr.length];
+        Arrays.fill(result, Long.MIN_VALUE);
+
+        for (int i = 0; i < arr.length; i++) {
+            long window = next[i] - prev[i] - 1;
+            result[(int) window - 1] = Math.max(result[(int) window - 1], arr[i]);
         }
 
-        // Clear the stack and use it to find the previous smaller element.
-        stack.clear();
-        for (int i = n - 1; i >= 0; i--) {
-            while (!stack.isEmpty() && arr[i] < arr[stack.peek()]) {
-                int poppedIndex = stack.pop();
-                prevSmaller[poppedIndex] = i;
-            }
-            stack.push(i);
-        }
-
-        // Calculate the window size for each element and find the maximum of the minimums.
-        for (int i = 0; i < n; i++) {
-            int windowSize = nextSmaller[i] - prevSmaller[i] - 1;
-            result[windowSize] = Math.max(result[windowSize], arr[i]);
-        }
-
-        // Fill in any gaps with larger values.
-        for (int i = n - 2; i >= 0; i--) {
+        for (int i = arr.length - 2; i >= 0; i--) {
             result[i] = Math.max(result[i], result[i + 1]);
         }
 
         return result;
     }
+
+    private static long[] findPrev(long[] arr) {
+        Stack<Integer> stack = new Stack<>();
+        long[] prev = new long[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            while (!stack.isEmpty() && arr[i] <= arr[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                prev[i] = -1;
+            } else {
+                prev[i] = stack.peek();
+            }
+            stack.push(i);
+        }
+        return prev;
+    }
+
+    private static long[] findNext(long[] arr) {
+        Stack<Integer> stack = new Stack<>();
+        long[] next = new long[arr.length];
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && arr[i] <= arr[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                next[i] = arr.length;
+            } else {
+                next[i] = stack.peek();
+            }
+            stack.push(i);
+        }
+        return next;
+    }
+
+//    public static int poisonousPlants(List<Integer> p) {
+//        // Write your code here
+//        //bruteForce solution:
+//        int count = 0;
+//        while (true) {
+//            List<Integer> removedPlants = new ArrayList<>();
+//            for (int i = 1; i < p.size(); i++) {
+//                if (p.get(i) > p.get(i - 1)) {
+//                    removedPlants.add(i);
+//                }
+//            }
+//            if (removedPlants.size() == 0) break;
+//            //p = remove(p, removedPlants);
+//            int reducedIndex = 0;
+//            for (int i : removedPlants) {
+//                i -= reducedIndex;
+//                p.remove(i);
+//                reducedIndex++;
+//            }
+//            count++;
+//        }
+//        return count;
+//    }
+
+    private static List<Integer> remove(List<Integer> input, Set<Integer> removedPlants) {
+        List<Integer> newList = new ArrayList<>();
+        for (int i = 0; i < input.size(); i++) {
+            if (removedPlants.contains(i)) continue;
+            newList.add(input.get(i));
+        }
+        return newList;
+    }
+
+    public static int poisonousPlants(List<Integer> p) {
+        // Write your code here
+        int n = 0;
+        int addition = 0;
+        boolean isFirst = true;
+        Stack<Integer> stack1 = new Stack<>();
+        Stack<Integer> stack2= new Stack<>();
+        Stack<Integer> stack3 = new Stack<>();
+        for (int i = 1; i < p.size(); i++) {
+            if (p.get(i) > p.get(i - 1)) { // it means it should remove in first iteration
+                if (isFirst) {
+                    n++;
+                    isFirst = false;
+                }
+                continue;
+            }
+            if (!stack1.isEmpty() && p.get(i) > stack1.peek()) { // it ask if it is not removed in first iteration and it should remove in next ones
+                if (stack2.isEmpty() || p.get(i) <= stack2.peek()) { // it checks if it is smaller or equal then it will count
+                    stack2.push(p.get(i));
+                } else {
+                    if (stack3.isEmpty() || p.get(i) <= stack3.peek()) {
+                        stack3.push(p.get(i));
+                    } else {
+                        stack3.clear();
+                    }
+                }
+                if (stack3.size() > stack2.size()) {
+                    stack2 = stack3;
+                    stack3 = new Stack<>();
+                }
+                addition = Math.max(addition, stack2.size());
+                continue;
+            }
+            stack2.clear();
+            stack3.clear();
+            stack1.push(p.get(i));
+        }
+        return n + addition;
+    }
+
+    public static Integer[] convertToArrayOfInt(String input) {
+        String[] result = input.split(" ");
+        Integer[] returnResult = new Integer[result.length];
+        for (int i = 0; i < result.length; i++) {
+            returnResult[i] = Integer.parseInt(result[i]);
+        }
+        return returnResult;
+    }
+
 }
 
 
