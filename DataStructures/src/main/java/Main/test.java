@@ -1216,6 +1216,44 @@ public class test {
         }
     }
 
+    class ResultGetTotalX {
+
+        /*
+         * Complete the 'getTotalX' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER_ARRAY a
+         *  2. INTEGER_ARRAY b
+         */
+
+        public static int getTotalX(List<Integer> a, List<Integer> b) {
+            // Write your code here\
+            Collections.sort(a);
+            Collections.sort(b);
+            Set<Integer> firstNumbers = new HashSet<>();
+            Set<Integer> secondNumbers = new HashSet<>();
+            for (int i = a.get(a.size() - 1); i <= b.get(0); i++) {
+                boolean isFactor = true;
+                for (int aSub : a) {
+                    if (i % aSub != 0) {isFactor = false;}
+                }
+                if (isFactor) firstNumbers.add(i);
+            }
+
+            for (int firstNumbersSub : firstNumbers) {
+                boolean isFactor = true;
+                for (int bSub : b) {
+                    if (bSub % firstNumbersSub != 0) {isFactor = false;}
+                }
+                if (isFactor) secondNumbers.add(firstNumbersSub);
+            }
+
+            return secondNumbers.size();
+        }
+
+    }
+
 }
 
 
