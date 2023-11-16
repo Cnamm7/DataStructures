@@ -1254,6 +1254,40 @@ public class test {
 
     }
 
+    class ResultBreakingRecorde {
+
+        /*
+         * Complete the 'breakingRecords' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts INTEGER_ARRAY scores as parameter.
+         */
+
+        public static List<Integer> breakingRecords(List<Integer> scores) {
+            // Write your code here
+            int min = 0;
+            int max = 0;
+            int baseMin = scores.get(0);
+            int baseMax = scores.get(0);
+            List<Integer> response = new ArrayList<>();
+
+            for (int i = 1; i < scores.size(); i++) {
+                if (scores.get(i) > baseMax) {
+                    baseMax = scores.get(i);
+                    max++;
+                } else if (scores.get(i) < baseMin){
+                    baseMin = scores.get(i);
+                    min++;
+                }
+            }
+
+            response.add(max);
+            response.add(min);
+            return response;
+        }
+
+    }
+
 }
 
 
