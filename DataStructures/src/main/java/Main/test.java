@@ -1343,7 +1343,38 @@ public class test {
             }
             return counter;
         }
+    }
 
+    class ResultMigratoryBirds {
+
+        /*
+         * Complete the 'migratoryBirds' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts INTEGER_ARRAY arr as parameter.
+         */
+
+        public static int migratoryBirds(List<Integer> arr) {
+            // Write your code here
+            Map<Integer, Integer> birdTypesNumber = new HashMap<>();
+
+            for (int element : arr) {
+                birdTypesNumber.put(element, birdTypesNumber.getOrDefault(element, 1) + 1);
+            }
+
+            int maxIteration = 0;
+            int minValue = 0;
+            List<Integer> keys = new ArrayList<>(birdTypesNumber.keySet());
+            Collections.sort(keys);
+            for (int key : keys) {
+                if (birdTypesNumber.get(key) > maxIteration) {
+                    minValue = key;
+                    maxIteration = birdTypesNumber.get(key);
+                }
+            }
+
+            return minValue;
+        }
     }
 }
 
