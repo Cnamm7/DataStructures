@@ -1285,7 +1285,40 @@ public class test {
             response.add(min);
             return response;
         }
+    }
 
+    class ResultSubArrayDivision {
+
+        /*
+         * Complete the 'birthday' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER_ARRAY s
+         *  2. INTEGER d
+         *  3. INTEGER m
+         */
+
+        public static int birthday(List<Integer> s, int d, int m) {
+            // Write your code here
+            int n = 0;
+            int l = m;
+            int counter = 0;
+
+            while (l <= s.size()) {
+                int sum = 0;
+                for (int i = n; i < l; i++) {
+                    sum += s.get(i);
+                }
+
+                if (sum == d) counter++;
+
+                n++;
+                l++;
+            }
+
+            return counter;
+        }
     }
 
 }
