@@ -1376,6 +1376,46 @@ public class test {
             return minValue;
         }
     }
+
+    class ResultOfDayOfTheProgrammer {
+
+        /*
+         * Complete the 'dayOfProgrammer' function below.
+         *
+         * The function is expected to return a STRING.
+         * The function accepts INTEGER year as parameter.
+         */
+
+        public static String dayOfProgrammer(int year) {
+            // Write your code here
+            // should find 256th day
+            String answer = "";
+            boolean leapYear = false;
+
+            if (year < 1918) {
+                // Julian Calendar
+                leapYear = year % 4 == 0 ? true : false;
+
+                answer = leapYear ? "12" + "." + "09" + "." + Integer.toString(year) : "13" + "." + "09" + "." + Integer.toString(year);
+
+            } else if (year == 1918) {
+                // Transition Year which means 31 Jan + Feb 15 + March 31 + April 30 + May 31 + June 30 + July 31 + August 31 and 1918 is not a leapYear
+                int numberOfDays = 230;
+                int date = 256 - numberOfDays;
+                answer = Integer.toString(date) + "." + "09" + "." + Integer.toString(year);
+            } else {
+                // Gregorian Calendar
+                if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+                    leapYear = true;
+                }
+
+                answer = leapYear ? "12" + "." + "09" + "." + Integer.toString(year) : "13" + "." + "09" + "." + Integer.toString(year);
+
+            }
+
+            return answer;
+        }
+    }
 }
 
 
