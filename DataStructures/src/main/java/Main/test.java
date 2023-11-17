@@ -1505,7 +1505,36 @@ public class test {
             return counterStart > counterEnd ? counterEnd : counterStart;
 
         }
+    }
 
+    class ResultCountingValleys {
+
+        /*
+         * Complete the 'countingValleys' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER steps
+         *  2. STRING path
+         */
+
+        public static int countingValleys(int steps, String path) {
+            // Write your code here
+            int traverse = 0;
+            boolean isInValley = false;
+            int numberOfValley = 0;
+            for (int i = 0; i < steps; i++) {
+                traverse += path.charAt(i) == 'D' ? -1 : 1;
+                if (traverse < 0) {
+                    if (isInValley == false) numberOfValley++;
+                    isInValley = true;
+                } else {
+                    isInValley = false;
+                }
+            }
+
+            return numberOfValley;
+        }
     }
 }
 
