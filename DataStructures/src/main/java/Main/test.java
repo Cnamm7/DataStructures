@@ -1477,6 +1477,36 @@ public class test {
             return counter;
         }
     }
+
+    class ResultDrawingBook {
+
+        /*
+         * Complete the 'pageCount' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER n
+         *  2. INTEGER p
+         */
+
+        public static int pageCount(int n, int p) {
+            // Write your code here
+            int counterStart = 0;
+            for (int i = 0; i <= n; i += 2) {
+                if (p == i || p == i + 1) break;
+                counterStart++;
+            }
+            int end = n % 2 == 0 ? n : n - 1;
+            int counterEnd = 0;
+            for (int j = end; j >= 0; j -= 2) {
+                if (p == j || p == j + 1) break;
+                counterEnd++;
+            }
+            return counterStart > counterEnd ? counterEnd : counterStart;
+
+        }
+
+    }
 }
 
 
