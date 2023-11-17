@@ -1536,6 +1536,29 @@ public class test {
             return numberOfValley;
         }
     }
+
+    public class SolutionElectricShop {
+
+        /*
+         * Complete the getMoneySpent function below.
+         */
+        static int getMoneySpent(int[] keyboards, int[] drives, int b) {
+            /*
+             * Write your code here.
+             */
+            int max = -1;
+            Map<Integer, Integer> difference = new HashMap<>();
+            for (int i = 0; i < keyboards.length; i++) {
+                for (int j = 0; j < drives.length; j++) {
+                    if (keyboards[i] + drives[j] <= b) {
+                        max = Math.max(max, keyboards[i] + drives[j]);
+                    }
+                }
+            }
+            return max;
+
+        }
+    }
 }
 
 
