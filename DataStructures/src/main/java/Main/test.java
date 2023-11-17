@@ -1445,6 +1445,38 @@ public class test {
             }
         }
     }
+
+    class ResultSalesByMatch {
+
+        /*
+         * Complete the 'sockMerchant' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER n
+         *  2. INTEGER_ARRAY ar
+         */
+
+        public static int sockMerchant(int n, List<Integer> ar) {
+            // Write your code here
+            Map<Integer, Integer> socks = new HashMap<>();
+            for (int element : ar) {
+                socks.put(element, socks.getOrDefault(element, 0) + 1);
+            }
+            int counter = 0;
+            System.out.println(socks.values());
+            for (int key : socks.keySet()) {
+                if (socks.get(key) % 2 == 0) {
+                    counter += socks.get(key) / 2;
+                } else if (socks.get(key) == 1) {
+                    continue;
+                } else {
+                    counter += (socks.get(key) - 1) / 2;
+                }
+            }
+            return counter;
+        }
+    }
 }
 
 
