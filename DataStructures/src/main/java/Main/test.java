@@ -1559,6 +1559,18 @@ public class test {
 
         }
     }
+
+    static String catAndMouse(int x, int y, int z) {
+        int xDistance = Math.abs(x - z);
+        int yDistance = Math.abs(y - z);
+        if (xDistance > yDistance) {
+            return "Cat B";
+        } else if (xDistance < yDistance) {
+            return "Cat A";
+        } else {
+            return "Mouse C";
+        }
+    }
 }
 
 
