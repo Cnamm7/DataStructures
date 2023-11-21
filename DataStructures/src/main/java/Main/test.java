@@ -2181,6 +2181,51 @@ public class test {
         }
     }
 
+    class ResultCircularArrayRotation {
+
+        /*
+         * Complete the 'circularArrayRotation' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts following parameters:
+         *  1. INTEGER_ARRAY a
+         *  2. INTEGER k
+         *  3. INTEGER_ARRAY queries
+         */
+
+        // a = [1,2,3]
+        // k = 2
+        // q = [0,1,2]
+        public static List<Integer> circularArrayRotation(List<Integer> a, int k, List<Integer> queries) {
+            // Write your code here
+            List<Integer> answers = new ArrayList<>();
+            if (k % a.size() == 0) {
+                for (int query : queries) {
+                    answers.add(a.get(query));
+                }
+            } else {
+                int rotation = k % a.size();
+                List<Integer> temp = new ArrayList<>();
+                for (int i = a.size() - rotation; i < a.size(); i++) {
+                    temp.add(a.get(i));
+                }
+
+                System.out.println(temp);
+
+                for (int i = 0; i < a.size() - rotation; i++) {
+                    temp.add(a.get(i));
+                }
+
+                System.out.println(temp);
+
+                for (int query : queries) {
+                    answers.add(temp.get(query));
+                }
+            }
+
+            return answers;
+        }
+    }
 }
 
 
