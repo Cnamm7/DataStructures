@@ -2247,6 +2247,31 @@ public class test {
             return result;
         }
     }
+
+    // Complete the jumpingOnClouds function below.
+    static int jumpingOnClouds(int[] c, int k) {
+        int energy = 100;
+        int i = k;
+        while (true) {
+            if (i > c.length) i = i - c.length;
+            if (i == c.length) {
+                if (c[0] == 0) {
+                    energy--;
+                } else {
+                    energy -= 3;
+                }
+                break;
+            }
+            if (c[i] == 0) {
+                energy--;
+            } else {
+                energy -= 3;
+            }
+            i += k;
+        }
+
+        return energy;
+    }
 }
 
 
