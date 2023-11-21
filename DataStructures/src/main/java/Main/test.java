@@ -2038,6 +2038,30 @@ public class test {
         }
 
     }
+
+    class ResultUtopianTree {
+
+        /*
+         * Complete the 'utopianTree' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts INTEGER n as parameter.
+         */
+
+        public static int utopianTree(int n) {
+            // Write your code here
+            int uTree = 1;
+            for (int i = 1; i <= n; i++) {
+                if (i % 2 != 0) {
+                    uTree *= 2;
+                } else {
+                    uTree += 1;
+                }
+            }
+            return uTree;
+        }
+
+    }
 }
 
 
