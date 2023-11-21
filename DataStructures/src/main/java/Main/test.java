@@ -2128,6 +2128,31 @@ public class test {
 
     }
 
+    class ResultViralAdvertising {
+
+        /*
+         * Complete the 'viralAdvertising' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts INTEGER n as parameter.
+         */
+
+        public static int viralAdvertising(int n) {
+            // Write your code here
+            int shared = 5;
+            int liked = 5 / 2;
+            int cumulative = liked;
+            for (int i = 2 ; i <= n; i++) {
+                shared = liked * 3;
+                liked = shared / 2;
+                cumulative += liked;
+            }
+
+            return cumulative;
+        }
+
+    }
+
 }
 
 
