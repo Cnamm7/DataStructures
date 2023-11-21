@@ -2083,6 +2083,51 @@ public class test {
             return onTime >= k ? "NO" : "YES";
         }
     }
+
+    class ResultBeautifulDays {
+
+        /*
+         * Complete the 'beautifulDays' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER i
+         *  2. INTEGER j
+         *  3. INTEGER k
+         */
+
+        public static int beautifulDays(int i, int j, int k) {
+            // Write your code here
+            int count = 0;
+            for (int m = i; m <= j; m++) {
+                int reverse = Integer.parseInt(reverse(Integer.toString(m)));
+                if ((m - reverse) % k == 0) count++;
+            }
+            return count;
+        }
+
+        private static String reverse(String input) {
+            int left = 0;
+            int right = input.length() - 1;
+            char[] charArray = input.toCharArray();
+            while (left < right) {
+                char temp = charArray[left];
+                charArray[left] = charArray[right];
+                charArray[right] = temp;
+
+                left++;
+                right--;
+            }
+
+            String reverse = "";
+            for (char c : charArray) {
+                reverse += c;
+            }
+            return reverse;
+        }
+
+    }
+
 }
 
 
