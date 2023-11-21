@@ -2150,7 +2150,35 @@ public class test {
 
             return cumulative;
         }
+    }
 
+    class ResultSaveThePrisoner {
+
+        /*
+         * Complete the 'saveThePrisoner' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER n
+         *  2. INTEGER m
+         *  3. INTEGER s
+         */
+
+        // prisoner5 candy2 start1
+        // prisoner5 candy2 start2
+        public static int saveThePrisoner(int n, int m, int s) {
+            // Write your code here
+            int startToEnd = n - s + 1;
+            if (m < startToEnd){
+                return s + m - 1;
+            } else if (m == startToEnd){
+                return n;
+            } else {
+                int remaining = m - startToEnd;
+                if (remaining % n == 0) return n;
+                return remaining % n;
+            }
+        }
     }
 
 }
