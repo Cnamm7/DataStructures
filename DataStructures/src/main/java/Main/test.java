@@ -2272,6 +2272,30 @@ public class test {
 
         return energy;
     }
+
+    class ResultFindDigits {
+
+        /*
+         * Complete the 'findDigits' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts INTEGER n as parameter.
+         */
+
+        public static int findDigits(int n) {
+            // Write your code here
+            String st = Integer.toString(n);
+            int count = 0;
+
+            for (int i = 0; i < st.length(); i++) {
+                String s = "" + st.charAt(i);
+                int divisor = Integer.parseInt(s);
+                if (divisor != 0 && n % divisor == 0) count++;
+            }
+
+            return count;
+        }
+    }
 }
 
 
