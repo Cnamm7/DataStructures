@@ -2226,6 +2226,27 @@ public class test {
             return answers;
         }
     }
+
+    class ResultPermutationEquation {
+
+        /*
+         * Complete the 'permutationEquation' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts INTEGER_ARRAY p as parameter.
+         */
+
+        public static List<Integer> permutationEquation(List<Integer> p) {
+            // Write your code here
+            List<Integer> result = new ArrayList<>();
+            for (int i = 1; i <= p.size(); i++) {
+                int placeOfX = p.indexOf(i) + 1;
+                int placeOfY = p.indexOf(placeOfX) + 1;
+                result.add(placeOfY);
+            }
+            return result;
+        }
+    }
 }
 
 
