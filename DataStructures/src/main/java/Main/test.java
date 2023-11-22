@@ -2412,6 +2412,29 @@ public class test {
             }
         }
     }
+
+    class ResultCutTheSticks {
+
+        /*
+         * Complete the 'cutTheSticks' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts INTEGER_ARRAY arr as parameter.
+         */
+
+        public static List<Integer> cutTheSticks(List<Integer> arr) {
+            // Write your code here
+            List<Integer> numberOfSticksLeft = new ArrayList<>();
+            Collections.sort(arr);
+            while (arr.size() > 0) {
+                numberOfSticksLeft.add(arr.size());
+                int min = arr.get(0);
+                arr = arr.stream().filter(stick -> stick > min).collect(Collectors.toList());
+                arr.forEach(stick -> stick = stick - min);
+            }
+            return numberOfSticksLeft;
+        }
+    }
 }
 
 
