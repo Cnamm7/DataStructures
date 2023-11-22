@@ -2296,6 +2296,31 @@ public class test {
             return count;
         }
     }
+
+    class ResultSherlockAndSquares {
+
+        /*
+         * Complete the 'squares' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER a
+         *  2. INTEGER b
+         */
+
+        public static int squares(int a, int b) {
+            // Write your code here
+            int count = 0;
+            double sqA = Math.sqrt(a);
+            double sqB = Math.sqrt(b);
+
+            for (int i = (int) Math.ceil(sqA); i <= (int) Math.floor(sqB); i++) {
+                count++;
+            }
+
+            return count;
+        }
+    }
 }
 
 
