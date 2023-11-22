@@ -2321,6 +2321,60 @@ public class test {
             return count;
         }
     }
+
+    class ResultAppendAndDelete {
+
+        /*
+         * Complete the 'appendAndDelete' function below.
+         *
+         * The function is expected to return a STRING.
+         * The function accepts following parameters:
+         *  1. STRING s
+         *  2. STRING t
+         *  3. INTEGER k
+         */
+
+        public static String appendAndDelete(String s, String t, int k) {
+            // Write your code here
+            while (!t.contains(s)) {
+                s = deleteThelast(s);
+                k--;
+            }
+
+            if (s.length() > 0 && !t.substring(0, s.length()).equals(s)) {
+                k -= s.length();
+                s = "";
+            }
+
+            int needToAppend = t.length() - s.length();
+            k -= needToAppend;
+            String answer = "";
+            if (k < 0) {
+                answer = "No";
+            } else if (k == 0) {
+                answer = "Yes";
+            } else {
+                if (k % 2 == 0) {
+                    answer = "Yes";
+                } else {
+                    if (k > 2 * s.length()) {
+                        answer = "Yes";
+                    } else {
+                        answer = "No";
+                    }
+                }
+            }
+            return answer;
+        }
+
+        private static String deleteThelast(String input) {
+            return input.substring(0, input.length() - 1);
+        }
+
+        private static String appendToLast(String input, char c) {
+            return input + c;
+        }
+    }
 }
 
 
