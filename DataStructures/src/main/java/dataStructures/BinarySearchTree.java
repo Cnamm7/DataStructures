@@ -4,8 +4,9 @@ package dataStructures;
 import dataStructuresImpl.BinarySearchTreeImpl;
 
 import java.util.List;
-/*
-implementing the BinarySearchTree from scratch with different methods
+
+/**
+ * implementing the BinarySearchTree from scratch with different methods
  */
 public interface BinarySearchTree {
     /**

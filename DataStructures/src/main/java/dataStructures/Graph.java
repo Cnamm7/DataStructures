@@ -1,5 +1,8 @@
 package dataStructures;
 
+/**
+ * implementing Graph data structure with different methods
+ */
 public interface Graph {
     /**
      * a function to add vertex to the graph
