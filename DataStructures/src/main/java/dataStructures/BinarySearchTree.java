@@ -60,7 +60,7 @@ public interface BinarySearchTree {
     int size();
 
     /**
-     * Breath First Search Method for this Binary Search Tree
+     * Breadth First Search Method for this Binary Search Tree, visiting and printing nodes level by level
      * @return List of integers based on the search method
      */
     List<Integer> BFS();
