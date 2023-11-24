@@ -129,7 +129,7 @@ public class Main {
         }
     }
 
-    public class MainHashTable {
+    public static class MainHashTable {
         public static void main(String[] args) {
             HashTable table = new HashTableImpl();
             table.set("Sina", 100);
@@ -161,7 +161,7 @@ public class Main {
         }
     }
 
-    public class MainOfLinkedList {
+    public static class MainOfLinkedList {
         public static void main(String[] args) throws DataStructuresExeption {
             LinkedList list = new LinkedListImpl(1);
             list.print();
@@ -226,10 +226,13 @@ public class Main {
             System.out.println(list.hasLoop());
             list1.append(2);
             System.out.println(list1.hasLoop());
+            list.print();
+            list.reverseBetween(1, 3);
+            list.print();
         }
     }
 
-    public class MainOfStackAndQueue {
+    public static class MainOfStackAndQueue {
         public static void main(String[] args) throws DataStructuresExeption {
             StackLinkedList stack = new StackLinkedListImpl(11);
             stack.print();
