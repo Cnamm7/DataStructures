@@ -254,11 +254,11 @@ public class Main {
             queue.enqueue(2);
             queue.enqueue(3);
             queue.enqueue(4);
-            queue.printFirstAndList();
+            queue.printFirstAndLast();
             queue.printLength();
             queue.printQueue();
             queue.dequeue();
-            queue.printFirstAndList();
+            queue.printFirstAndLast();
             queue.printLength();
             queue.printQueue();
         }
