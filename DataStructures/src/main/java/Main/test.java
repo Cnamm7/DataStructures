@@ -2468,6 +2468,31 @@ public class test {
             return count;
         }
     }
+
+    class ResultJumpingOnTheCloud {
+
+        /*
+         * Complete the 'jumpingOnClouds' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts INTEGER_ARRAY c as parameter.
+         */
+
+        public static int jumpingOnClouds(List<Integer> c) {
+            // Write your code here
+            int count = -1;
+            int i = 0;
+            while (i < c.size()) {
+                if (i + 2 < c.size() && c.get(i + 2) != 1) {
+                    i += 2;
+                } else {
+                    i++;
+                }
+                count++;
+            }
+            return count;
+        }
+    }
 }
 
 
