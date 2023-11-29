@@ -2493,6 +2493,38 @@ public class test {
             return count;
         }
     }
+
+    class ResultEqualizeTheArray {
+
+        /*
+         * Complete the 'equalizeArray' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts INTEGER_ARRAY arr as parameter.
+         */
+
+        public static int equalizeArray(List<Integer> arr) {
+            // Write your code here
+            Map<Integer, Integer> numberOfRepeatedValues = new HashMap<>();
+            int maxRepeated = arr.get(0);
+            for (int element : arr) {
+                numberOfRepeatedValues
+                        .put(element, numberOfRepeatedValues
+                                .getOrDefault(element, 0) + 1);
+
+                maxRepeated = numberOfRepeatedValues.get(element)
+                        > numberOfRepeatedValues.get(maxRepeated)
+                        ? element
+                        : maxRepeated;
+            }
+            int count = 0;
+            for (int key : numberOfRepeatedValues.keySet()) {
+                if (key == maxRepeated) continue;
+                count += numberOfRepeatedValues.get(key);
+            }
+            return count;
+        }
+    }
 }
 
 
