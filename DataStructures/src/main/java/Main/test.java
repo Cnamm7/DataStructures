@@ -2435,6 +2435,39 @@ public class test {
             return numberOfSticksLeft;
         }
     }
+
+    class ResultRepeatedString {
+
+        /*
+         * Complete the 'repeatedString' function below.
+         *
+         * The function is expected to return a LONG_INTEGER.
+         * The function accepts following parameters:
+         *  1. STRING s
+         *  2. LONG_INTEGER n
+         */
+
+        public static long repeatedString(String s, long n) {
+            // Write your code here
+            long count = 0;
+
+            if (s.length() < n) {
+                for (int i = 0; i < s.length(); i++) {
+                    if (s.charAt(i) == 'a') count++;
+                }
+                long remaining = n % s.length();
+                count *= Math.floor(n / s.length());
+                for (int i = 0; i < remaining; i++) {
+                    if (s.charAt(i) == 'a') count++;
+                }
+            } else {
+                for (int i = 0; i < n; i++) {
+                    if (s.charAt(i) == 'a') count++;
+                }
+            }
+            return count;
+        }
+    }
 }
 
 
