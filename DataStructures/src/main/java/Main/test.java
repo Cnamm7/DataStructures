@@ -2553,7 +2553,40 @@ public class test {
                     numberOfmaxGroups.put(max, numberOfmaxGroups.getOrDefault(max, 0) + 1);
                 }
             }
-            return new ArrayList<Integer>(Arrays.asList(maxTopic, numberOfmaxGroups.get(maxTopic)));
+            return new ArrayList<>(Arrays.asList(maxTopic, numberOfmaxGroups.get(maxTopic)));
+        }
+    }
+
+    class ResultTaumAndBday {
+
+        /*
+         * Complete the 'taumBday' function below.
+         *
+         * The function is expected to return a LONG_INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER b
+         *  2. INTEGER w
+         *  3. INTEGER bc
+         *  4. INTEGER wc
+         *  5. INTEGER z
+         */
+
+        public static long taumBday(int b, int w, int bc, int wc, int z) {
+            // Write your code here
+            long overallCost = 0;
+            long bL = b;
+            long wL = w;
+            long bcL = bc;
+            long wcL = wc;
+            long zL = z;
+            if ((bcL + zL) < wcL) {
+                overallCost = (bL * bcL) + (wL * (bcL + zL));
+            } else if ((wcL + zL) < bcL) {
+                overallCost = (bL * (wcL + zL)) + (wL * wcL);
+            } else {
+                overallCost = (bL * bcL) + (wL * wcL);
+            }
+            return overallCost;
         }
     }
 }
