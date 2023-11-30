@@ -2525,6 +2525,37 @@ public class test {
             return count;
         }
     }
+
+    class ResultACMTeam {
+
+        /*
+         * Complete the 'acmTeam' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts STRING_ARRAY topic as parameter.
+         */
+
+        public static List<Integer> acmTeam(List<String> topic) {
+            // Write your code here
+            int maxTopic = 0;
+            Map<Integer, Integer> numberOfmaxGroups = new HashMap<>();
+            for (int i = 0; i < topic.size(); i++) {
+                for (int j = i + 1; j < topic.size(); j++) {
+                    List<Integer> indexOfUnkown = new ArrayList<>();
+                    char[] firstPerson = topic.get(i).toCharArray();
+                    char[] secondPerson = topic.get(j).toCharArray();
+                    for (int k = 0; k < firstPerson.length; k++) {
+                        if (firstPerson[k] == '0') indexOfUnkown.add(k);
+                    }
+                    indexOfUnkown.removeIf(n -> secondPerson[n] != '0');
+                    int max = firstPerson.length - indexOfUnkown.size();
+                    maxTopic = Math.max(maxTopic, max);
+                    numberOfmaxGroups.put(max, numberOfmaxGroups.getOrDefault(max, 0) + 1);
+                }
+            }
+            return new ArrayList<Integer>(Arrays.asList(maxTopic, numberOfmaxGroups.get(maxTopic)));
+        }
+    }
 }
 
 
