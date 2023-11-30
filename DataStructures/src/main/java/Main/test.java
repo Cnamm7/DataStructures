@@ -2589,6 +2589,42 @@ public class test {
             return overallCost;
         }
     }
+
+    class ResultModifiedKaprekarNumbers {
+
+        /*
+         * Complete the 'kaprekarNumbers' function below.
+         *
+         * The function accepts following parameters:
+         *  1. INTEGER p
+         *  2. INTEGER q
+         */
+
+        public static void kaprekarNumbers(int p, int q) {
+            // Write your code here
+            List<Integer> kaprekarNumbers = new ArrayList<>();
+            for (int i = p; i <= q; i++) {
+                if (isKaperkarNumber(i)) kaprekarNumbers.add(i);
+            }
+            if (kaprekarNumbers.size() == 0) {
+                System.out.println("INVALID RANGE");
+            } else {
+                kaprekarNumbers.forEach(k -> System.out.print(k + " "));
+            }
+        }
+
+        private static boolean isKaperkarNumber(int input) {
+            String squareValue = Long.toString((long)Math.pow(input, 2));
+            if (squareValue.length() == 1) {
+                return Integer.parseInt(squareValue) == input;
+            } else {
+                int left = squareValue.length() / 2;
+                return Integer.parseInt(squareValue.substring(0, left))
+                        + Integer.parseInt(squareValue.substring(left))
+                        == input;
+            }
+        }
+    }
 }
 
 
