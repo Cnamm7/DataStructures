@@ -230,6 +230,9 @@ public class test {
         // should be 21
         System.out.println(MagicSquareResult.formingMagicSquare(inputMetric));
 
+        System.out.println("====================================");
+        String s = "11331";
+        System.out.println(ResultHighestValuePalindrome.highestValuePalindrome(s, 5, 4));
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -1692,191 +1695,77 @@ public class test {
 
         private static int minimumPath(List<PlaceHolders> placeHolders) {
             List<Integer> possibilities = new ArrayList<>();
+            List<List<Integer>> combinations = Arrays.asList(Arrays.asList(0,0,0),Arrays.asList(0,5,0),Arrays.asList(0,0,0));
 
-            Set<Integer> availableNumbers = new HashSet<>();
-            availableNumbers.add(1);
-            availableNumbers.add(2);
-            availableNumbers.add(3);
-            availableNumbers.add(4);
-            availableNumbers.add(6);
-            availableNumbers.add(7);
-            availableNumbers.add(8);
-            availableNumbers.add(9);
+            Set<Integer> seenNumbers = new HashSet<>();
+            seenNumbers.add(1);
+            seenNumbers.add(2);
+            seenNumbers.add(3);
+            seenNumbers.add(4);
+            seenNumbers.add(6);
+            seenNumbers.add(7);
+            seenNumbers.add(8);
+            seenNumbers.add(9);
 
-
-            minimumPath(placeHolders, availableNumbers, 0, 0, possibilities);
-            Collections.sort(possibilities);
-            return possibilities.get(0);
+            minimumPath(placeHolders, possibilities, combinations, seenNumbers, 0);
+            return possibilities.stream().sorted().collect(Collectors.toList()).get(0);
         }
 
-        private static void minimumPath(List<PlaceHolders> placeHolders, Set<Integer> availableNumbers, int index, int sum, List<Integer> possibilities) {
-            if (index == 4) {
+        private static void minimumPath(List<PlaceHolders> placeHolders, List<Integer> possibilities, List<List<Integer>> combinations, Set<Integer> seenNumbers, int sum) {
+            if (placeHolders.size() == 0 && isValid(combinations)) {
+                System.out.println(combinations + " " + "price: " + sum);
                 possibilities.add(sum);
+                return;
+            } else if (placeHolders.size() == 0) {
                 return;
             }
 
-            if (availableNumbers.contains(placeHolders.get(index).options.get(0).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(0).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(0).right);
-                sum += placeHolders.get(index).options.get(0).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(0).left);
-                availableNumbers.add(placeHolders.get(index).options.get(0).right);
-                sum -= placeHolders.get(index).options.get(0).price;
-            }
-
-            if (availableNumbers.contains(placeHolders.get(index).options.get(1).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(1).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(1).right);
-                sum += placeHolders.get(index).options.get(1).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(1).left);
-                availableNumbers.add(placeHolders.get(index).options.get(1).right);
-                sum -= placeHolders.get(index).options.get(1).price;
-            }
-
-            if (availableNumbers.contains(placeHolders.get(index).options.get(2).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(2).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(2).right);
-                sum += placeHolders.get(index).options.get(2).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(2).left);
-                availableNumbers.add(placeHolders.get(index).options.get(2).right);
-                sum -= placeHolders.get(index).options.get(2).price;
-            }
-
-            if (availableNumbers.contains(placeHolders.get(index).options.get(3).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(3).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(3).right);
-                sum += placeHolders.get(index).options.get(3).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(3).left);
-                availableNumbers.add(placeHolders.get(index).options.get(3).right);
-                sum -= placeHolders.get(index).options.get(3).price;
-            }
-
-            if (availableNumbers.contains(placeHolders.get(index).options.get(4).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(4).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(4).right);
-                sum += placeHolders.get(index).options.get(4).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(4).left);
-                availableNumbers.add(placeHolders.get(index).options.get(4).right);
-                sum -= placeHolders.get(index).options.get(4).price;
-            }
-
-            if (availableNumbers.contains(placeHolders.get(index).options.get(5).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(5).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(5).right);
-                sum += placeHolders.get(index).options.get(5).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(5).left);
-                availableNumbers.add(placeHolders.get(index).options.get(5).right);
-                sum -= placeHolders.get(index).options.get(5).price;
-            }
-
-            if (availableNumbers.contains(placeHolders.get(index).options.get(6).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(6).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(6).right);
-                sum += placeHolders.get(index).options.get(6).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(6).left);
-                availableNumbers.add(placeHolders.get(index).options.get(6).right);
-                sum -= placeHolders.get(index).options.get(6).price;
-            }
-
-            if (availableNumbers.contains(placeHolders.get(index).options.get(7).left)) {
-                availableNumbers.remove(placeHolders.get(index).options.get(7).left);
-                availableNumbers.remove(placeHolders.get(index).options.get(7).right);
-                sum += placeHolders.get(index).options.get(7).price;
-                index++;
-                minimumPath(placeHolders, availableNumbers, index, sum, possibilities);
-                index--;
-                availableNumbers.add(placeHolders.get(index).options.get(7).left);
-                availableNumbers.add(placeHolders.get(index).options.get(7).right);
-                sum -= placeHolders.get(index).options.get(7).price;
+            for (PlaceHolders p : placeHolders) {
+                    for (Pair pair : p.options) {
+                        if (seenNumbers.contains(pair.left) && seenNumbers.contains(pair.right)) {
+                            int newSum = sum + pair.price;
+                            if (p.placeHolder == "A") {
+                                combinations.get(0).set(0, pair.left);
+                                combinations.get(2).set(2, pair.right);
+                            } else if (p.placeHolder == "B") {
+                                combinations.get(0).set(1, pair.left);
+                                combinations.get(2).set(1, pair.right);
+                            } else if (p.placeHolder == "C") {
+                                combinations.get(0).set(2, pair.left);
+                                combinations.get(2).set(0, pair.right);
+                            } else {
+                                combinations.get(1).set(0, pair.left);
+                                combinations.get(1).set(2, pair.right);
+                            }
+                            List<PlaceHolders> newPlaceHolders = placeHolders.stream().filter(a -> a != p).toList();
+                            Set<Integer> newSeenNumbers = seenNumbers.stream()
+                                    .filter(a -> a != pair.left)
+                                    .filter(a -> a != pair.right)
+                                    .collect(Collectors.toSet());
+                            minimumPath(newPlaceHolders, possibilities, combinations, newSeenNumbers, newSum);
+                        }
+                    }
             }
         }
 
-        // public static int formingMagicSquare(List<List<Integer>> s) {
-        //     // Write your code here
-        //     int magicConstant = 15;
-        //     int pivot = 5;
-        //     int sum = 0;
-        //     int difference = 0;
-        //     difference += s.get(1).get(1) - pivot;
-        //     sum += Math.abs(difference);
-        //     Set<Integer> availableNumbers = new HashSet<>();
-        //     availableNumbers.add(1);
-        //     availableNumbers.add(2);
-        //     availableNumbers.add(3);
-        //     availableNumbers.add(4);
-        //     availableNumbers.add(6);
-        //     availableNumbers.add(7);
-        //     availableNumbers.add(8);
-        //     availableNumbers.add(9);
+        private static boolean isValid(List<List<Integer>> combinations) {
+            if (  combinations.get(0).get(0)
+                    + combinations.get(0).get(1)
+                    + combinations.get(0).get(2) == 15
+                    &&    combinations.get(2).get(0)
+                    + combinations.get(2).get(1)
+                    + combinations.get(2).get(2) == 15
+                    &&    combinations.get(0).get(0)
+                    + combinations.get(1).get(0)
+                    + combinations.get(2).get(0) == 15
+                    &&    combinations.get(0).get(2)
+                    + combinations.get(1).get(2)
+                    + combinations.get(2).get(2) == 15) {
+                return true;
+            }
 
-        //     // finding valid numbers by pivoting the middle value
-        //     for (int i = 0; i < s.size(); i++) {
-        //         for (int j = 0; j < s.get(i).size(); j++) {
-        //             if (i == 1 && j == 1) {
-        //                 System.out.println(s);
-        //                 return sum;
-        //             }
-        //             int oppositeI = oppositeIndexCalculator(i);
-        //             int oppositeJ = oppositeIndexCalculator(j);
-
-
-        //             int nearestLeft = findTheNearest(availableNumbers, s.get(i).get(j));
-        //             int nearestRight = findTheNearest(availableNumbers, s.get(oppositeI).get(oppositeJ));
-        //             int priceLeft = Math.abs(nearestLeft - s.get(i).get(j));
-        //             int priceRight = Math.abs(nearestRight - s.get(oppositeI).get(oppositeJ));
-        //             int priceOppositeLeft = Math.abs(getTheOpposite(nearestLeft) - s.get(oppositeI).get(oppositeJ));
-        //             int priceOppositeRight = Math.abs(getTheOpposite(priceRight) - s.get(i).get(j));
-
-
-        //             if ((priceLeft + priceOppositeLeft) < (priceRight + priceOppositeRight)) {
-        //                 sum += (priceLeft + priceOppositeLeft);
-        //                 s.get(i).set(j, nearestLeft);
-        //                 s.get(oppositeI).set(oppositeJ, getTheOpposite(nearestLeft));
-        //                 availableNumbers.remove(nearestLeft);
-        //                 availableNumbers.remove(getTheOpposite(nearestLeft));
-        //             } else {
-        //                 sum += (priceRight + priceOppositeRight);
-        //                 s.get(i).set(j, nearestRight);
-        //                 s.get(oppositeI).set(oppositeJ, getTheOpposite(nearestRight));
-        //                 availableNumbers.remove(nearestRight);
-        //                 availableNumbers.remove(getTheOpposite(nearestRight));
-        //             }
-        //             // sum += Math.abs(nearest - s.get(i).get(j));
-        //             // s.get(i).set(j, nearest);
-
-
-        //             // removeDoubleNumbers(availableNumbers, s.get(i).get(j));
-
-        //             // difference = 0;
-        //             // difference += magicConstant - s.get(i).get(j) - pivot - s.get(oppositeI).get(oppositeJ);
-
-        //             // sum += Math.abs(difference);
-        //         }
-        //     }
-
-        //     return 0;
-        // }
+            return false;
+        }
 
         private static int oppositeIndexCalculator(int index) {
             int opposite = 0;
@@ -1891,66 +1780,6 @@ public class test {
                     break;
             }
             return opposite;
-        }
-
-        private static void removeDoubleNumbers(Set<Integer> availableNumbers, int input) {
-            switch (input) {
-                case 1:
-                    availableNumbers.remove(1);
-                    availableNumbers.remove(9);
-                    break;
-                case 2:
-                    availableNumbers.remove(2);
-                    availableNumbers.remove(8);
-                    break;
-                case 3:
-                    availableNumbers.remove(3);
-                    availableNumbers.remove(7);
-                    break;
-                case 4:
-                    availableNumbers.remove(4);
-                    availableNumbers.remove(6);
-                    break;
-                case 6:
-                    availableNumbers.remove(6);
-                    availableNumbers.remove(4);
-                    break;
-                case 7:
-                    availableNumbers.remove(7);
-                    availableNumbers.remove(3);
-                    break;
-                case 8:
-                    availableNumbers.remove(2);
-                    availableNumbers.remove(8);
-                    break;
-                case 9:
-                    availableNumbers.remove(1);
-                    availableNumbers.remove(9);
-                    break;
-            }
-        }
-
-        private static int findTheNearest(Set<Integer> availableNumbers, int input) {
-            if (availableNumbers.contains(input)) return input;
-            int left = input - 1;
-            int right = input + 1;
-            int found = 0;
-            while (true) {
-                if (availableNumbers.contains(left)) {
-                    found = left;
-                    break;
-                } else if (availableNumbers.contains(right)) {
-                    found = right;
-                    break;
-                }
-                left = left - 1;
-                right = right + 1;
-            }
-            return found;
-        }
-
-        private static int getTheOpposite(int number) {
-            return 10 - number;
         }
     }
 
@@ -2647,6 +2476,88 @@ public class test {
             }
             return count;
         }
+    }
+
+    static class ResultHighestValuePalindrome {
+
+        /*
+         * Complete the 'highestValuePalindrome' function below.
+         *
+         * The function is expected to return a STRING.
+         * The function accepts following parameters:
+         *  1. STRING s
+         *  2. INTEGER n
+         *  3. INTEGER k
+         */
+
+        public static String highestValuePalindrome(String s, int n, int k) {
+            // Write your code here
+            List<Integer> palindromeIndexes = canItBePalindrome(s);
+            char[] chars = s.toCharArray();
+            if (palindromeIndexes.size() <= k) {
+                for (int i : palindromeIndexes) {
+                    if (chars[i] < chars[chars.length - 1 - i]) {
+                        chars[i] = chars[chars.length - 1 - i];
+                    } else {
+                        chars[chars.length - 1 - i] = chars[i];
+                    }
+                }
+                int remaining = k - palindromeIndexes.size();
+                int left = 0;
+                int right = chars.length - 1;
+                while (remaining > 0 && left <= right) {
+                    if (remaining > 1) {
+                        if (chars[left] == '9') {
+                            left++;
+                            right--;
+                            continue;
+                        }
+                        chars[left] = '9';
+                        chars[right] = '9';
+                        if (palindromeIndexes.contains(left)) {
+                            remaining--;
+                        } else {
+                            remaining -= 2;
+                        }
+
+                    } else {
+                        for (int index : palindromeIndexes) {
+                            if (chars[index] != '9') {
+                                chars[index] = '9';
+                                chars[chars.length - 1 - index] = '9';
+                                remaining--;
+                                break;
+                            }
+                        }
+                        if (remaining > 0 && n % 2 == 1) {
+                            chars[n / 2] = '9';
+                            remaining--;
+                        }
+                    }
+
+                    left++;
+                    right--;
+                }
+                return new String(chars);
+            } else {
+                return "-1";
+            }
+        }
+
+        private static List<Integer> canItBePalindrome(String s) {
+            int left = 0;
+            int right = s.length() - 1;
+            List<Integer> pallindromeIndexes = new ArrayList<>();
+            while(left < right) {
+                if (s.charAt(left) != s.charAt(right)) {
+                    pallindromeIndexes.add(left);
+                }
+                left++;
+                right--;
+            }
+            return pallindromeIndexes;
+        }
+
     }
 }
 
