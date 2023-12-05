@@ -2625,6 +2625,29 @@ public class test {
             }
         }
     }
+
+    class ResultBeautifulTriplets {
+
+        /*
+         * Complete the 'beautifulTriplets' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER d
+         *  2. INTEGER_ARRAY arr
+         */
+
+        public static int beautifulTriplets(int d, List<Integer> arr) {
+            // Write your code here
+            int count = 0;
+            for (int number : arr) {
+                if (arr.contains(number + d) && arr.contains(number + (2 * d))) {
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
 }
 
 
