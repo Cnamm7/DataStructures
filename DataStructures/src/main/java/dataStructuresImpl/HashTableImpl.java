@@ -93,7 +93,7 @@ public class HashTableImpl implements HashTable {
      * private hash function to create a hash value from the key, and ensuring that it will be in the array index range
      * by calculating the remainder value
      * @param key
-     * @return
+     * @return the index int that is generated using this function
      */
     private int hash(String key) {
         int hash = 0;

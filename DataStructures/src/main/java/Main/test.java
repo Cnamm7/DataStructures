@@ -233,6 +233,11 @@ public class test {
         System.out.println("====================================");
         String s = "11331";
         System.out.println(ResultHighestValuePalindrome.highestValuePalindrome(s, 5, 4));
+
+        System.out.println("====================================");
+        int[] arrKthLargest = {15, 12, 18, 1, 24, 0, 99, 8, 65, 83};
+        System.out.println(findKthLargestElement(arrKthLargest, 3));
+
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -419,7 +424,7 @@ public class test {
                         result = sub;
                         found = true;
                     }
-                    if (found == true && !condition) {
+                    if (found && !condition) {
                         start = s.lastIndexOf(s.charAt(i - 1), i - 2) + 1;
                         break;
                     }
@@ -2557,7 +2562,28 @@ public class test {
             }
             return pallindromeIndexes;
         }
+    }
 
+    /**
+     * find the kth largest element in the array without sorting it
+     */
+    public static int findKthLargestElement(int[] arr, int k) {
+        if (k > arr.length) return Integer.MIN_VALUE;
+        List<Integer> kLargest = new ArrayList<>();
+        for (int element : arr) {
+            kLargest.add(element);
+            int i = kLargest.size() - 1;
+            while (i > -1) {
+                if (i > 0 && kLargest.get(i) > kLargest.get(i - 1)) {
+                    int temp = kLargest.get(i);
+                    kLargest.set(i, kLargest.get(i - 1));
+                    kLargest.set(i - 1, temp);
+                }
+                i--;
+            }
+            if (kLargest.size() > k) kLargest.remove(kLargest.size() - 1);
+        }
+        return kLargest.get(kLargest.size() - 1);
     }
 }
 
