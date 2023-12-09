@@ -237,6 +237,7 @@ public class test {
         System.out.println("====================================");
         int[] arrKthLargest = {15, 12, 18, 1, 24, 0, 99, 8, 65, 83};
         System.out.println(findKthLargestElement(arrKthLargest, 3));
+        System.out.println(findKthLargestElementWithHeap(arrKthLargest, 3));
 
     }
 
@@ -2584,6 +2585,17 @@ public class test {
             if (kLargest.size() > k) kLargest.remove(kLargest.size() - 1);
         }
         return kLargest.get(kLargest.size() - 1);
+    }
+
+    public static int findKthLargestElementWithHeap(int[] arr, int k) {
+        if (k > arr.length) return Integer.MIN_VALUE;
+        //List<Integer> kLargest = new ArrayList<>();
+        PriorityQueue<Integer> pQueue = new PriorityQueue<>();
+        for (int element : arr) {
+            pQueue.add(element);
+            if (pQueue.size() > k) pQueue.remove();
+        }
+        return pQueue.peek();
     }
 }
 
