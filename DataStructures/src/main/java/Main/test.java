@@ -241,6 +241,12 @@ public class test {
         String inputReverseShuffleMerge = "abcdefgabcdefg";
         System.out.println(ResultReverseShuffleMerge.reverseShuffleMerge(inputReverseShuffleMerge));
 
+        System.out.println("====================================");
+        System.out.println(findNValue(8));
+
+        System.out.println("====================================");
+        String[] inputForMostCommonLength = {"abfghrwer", "absdfgsdf", "abtgthderg", "absdgsdasd", "abdsgsdgs", "abaewrsv", "abasdgasg", "absdgf"};
+        System.out.println(findTheMostLengthCommonPrefix(inputForMostCommonLength));
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -2706,6 +2712,60 @@ public class test {
             if (!s2.isEmpty()) {
                 merge(s1, s2.substring(1), merged, merge + s2.charAt(0));
             }
+        }
+    }
+
+    /**
+     * challenge to find the n item in the list value, for n 1 to 4 the result is 1, 2, 3 and 4
+     * respectively, but for any n after 4, the result will be (n-1) + (n-2) + (n-3) + (n-4)
+     * n is always is equal or more than 1
+     * @param n
+     * @return
+     */
+    public static int findNValue(int n) {
+        int [] arr = new int[n];
+        return findNValue(n, arr);
+    }
+
+    private static int findNValue(int n, int[] arr) {
+        if (n == 1 || n == 2 || n == 3 || n == 4) {
+            arr[n - 1] = n;
+            return n;
+        } else {
+            arr[n - 1] = findNValue(n - 1, arr)
+                        + findNValue(n - 2, arr)
+                        + findNValue(n - 3, arr)
+                        + findNValue(n - 4, arr);
+        }
+
+        return arr[n - 1];
+    }
+
+    /**
+     * In this challenge we should have found the common prefix with the highest length
+     * between strings in the list
+     * @param input
+     * @return
+     */
+    public static String findTheMostLengthCommonPrefix(String[] input) {
+        if (input.length == 0) return "";
+        StringBuilder prefix = new StringBuilder();
+        int j = 0;
+        while (true) {
+            if (j == input[0].length()) {
+                return prefix.toString();
+            }
+
+            char temp = input[0].charAt(j);
+
+            for (int i = 1; i < input.length; i++) {
+                if (j == input[i].length() || temp != input[i].charAt(j)) {
+                    return prefix.toString();
+                }
+            }
+
+            prefix.append(temp);
+            j++;
         }
     }
 }
