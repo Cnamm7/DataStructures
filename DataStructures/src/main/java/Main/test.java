@@ -2768,6 +2768,38 @@ public class test {
             j++;
         }
     }
+
+    class ResultMinimumDistances {
+
+        /*
+         * Complete the 'minimumDistances' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts INTEGER_ARRAY a as parameter.
+         */
+
+        public static int minimumDistances(List<Integer> a) {
+            // Write your code here
+            int min = Integer.MAX_VALUE;
+            Map<Integer, List<Integer>> matchIndexes = new HashMap<>();
+            for (int i = 0; i < a.size(); i++) {
+                if (matchIndexes.containsKey(a.get(i))) {
+                    matchIndexes.get(a.get(i)).add(i);
+                } else {
+                    List<Integer> indexes = new ArrayList<>();
+                    indexes.add(i);
+                    matchIndexes.put(a.get(i), indexes);
+                }
+            }
+            for (int key : matchIndexes.keySet()) {
+                int distance = matchIndexes.get(key).get(matchIndexes.get(key).size() - 1) - matchIndexes.get(key).get(0);
+                if (distance != 0 && distance < min) {
+                    min = distance;
+                }
+            }
+            return min == Integer.MAX_VALUE ? -1 : min;
+        }
+    }
 }
 
 
