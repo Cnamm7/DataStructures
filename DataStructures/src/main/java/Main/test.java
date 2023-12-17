@@ -2830,6 +2830,82 @@ public class test {
             return count;
         }
     }
+
+    class ResultTheTimeInWords {
+
+        /*
+         * Complete the 'timeInWords' function below.
+         *
+         * The function is expected to return a STRING.
+         * The function accepts following parameters:
+         *  1. INTEGER h
+         *  2. INTEGER m
+         */
+
+        public static String timeInWords(int h, int m) {
+            // Write your code here
+            String minute = "";
+            String hour = "";
+            String toOrPast = "";
+            String minuteWord = "";
+
+            if (m <= 30) {
+                minute = numberConverter(m);
+                toOrPast = "past";
+                minuteWord = m == 1 ? "minute" : "minutes";
+                hour = h == 15 ? "fifteen" : numberConverter(h);
+            } else {
+                minute = numberConverter(60 - m);
+                toOrPast = "to";
+                minuteWord = (60 - m) == 1 ? "minute" : "minutes";
+                hour = h == 14 ? "fifteen" : numberConverter(h + 1);
+            }
+
+            if (m == 0) {
+                return hour + " " + minute;
+            } else if (m == 15 || m == 30 || m == 45) {
+                return minute + " " + toOrPast + " " + hour;
+            } else {
+                return minute + " " + minuteWord + " " + toOrPast + " " + hour;
+            }
+        }
+
+        private static String numberConverter(int input) {
+            return switch (input) {
+                case 1 -> "one";
+                case 2 -> "two";
+                case 3 -> "three";
+                case 4 -> "four";
+                case 5 -> "five";
+                case 6 -> "six";
+                case 7 -> "seven";
+                case 8 -> "eight";
+                case 9 -> "nine";
+                case 10 -> "ten";
+                case 11 -> "eleven";
+                case 12 -> "twelve";
+                case 13 -> "thirteen";
+                case 14 -> "fourteen";
+                case 15 -> "quarter";
+                case 16 -> "sixteen";
+                case 17 -> "seventeen";
+                case 18 -> "eighteen";
+                case 19 -> "nineteen";
+                case 20 -> "twenty";
+                case 21 -> "twenty one";
+                case 22 -> "twenty two";
+                case 23 -> "twenty three";
+                case 24 -> "twenty four";
+                case 25 -> "twenty five";
+                case 26 -> "twenty six";
+                case 27 -> "twenty seven";
+                case 28 -> "twenty eight";
+                case 29 -> "twenty nine";
+                case 30 -> "half";
+                default -> "o' clock";
+            };
+        }
+    }
 }
 
 
