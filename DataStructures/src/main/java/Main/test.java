@@ -2906,6 +2906,35 @@ public class test {
             };
         }
     }
+
+    class ResultChocolateFeast {
+
+        /*
+         * Complete the 'chocolateFeast' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER n
+         *  2. INTEGER c
+         *  3. INTEGER m
+         */
+
+        public static int chocolateFeast(int n, int c, int m) {
+            // Write your code here
+            int remainder = n % c;
+            int purchase = (n - remainder) / c;
+            int eaten = purchase;
+
+            while (purchase >= m) {
+                remainder = purchase % m;
+                purchase = (purchase - remainder) / m;
+                eaten += purchase;
+                purchase += remainder;
+            }
+
+            return eaten;
+        }
+    }
 }
 
 
