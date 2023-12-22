@@ -247,8 +247,37 @@ public class test {
         System.out.println("====================================");
         String[] inputForMostCommonLength = {"abfghrwer", "absdfgsdf", "abtgthderg", "absdgsdasd", "abdsgsdgs", "abaewrsv", "abasdgasg", "absdgf"};
         System.out.println(findTheMostLengthCommonPrefix(inputForMostCommonLength));
+
+        System.out.println("====================================");
+        Map<String, Integer> testMap = new HashMap<>();
+        testMap.put("1", 10);
+        Map<String, Integer> testMapClone = new HashMap<>(testMap);
+        testMapClone.put("1", 20);
+        System.out.println(testMap.get("1"));
+
+        String s12 = "21";
+        String s13 = "12";
+        System.out.println(s13.contains(s12));
+
+        String shufflemerge1 = "jjddgc";
+        String shufflemerge2 = "jjcddjggcdjd";
+        System.out.println(isInMerge(shufflemerge1, shufflemerge2));
     }
 
+    private static boolean isInMerge(String prefix, String original) {
+        int leftOriginal = 0;
+        int leftPrefix = 0;
+        while (leftPrefix < prefix.length() && leftOriginal < original.length()) {
+            if (prefix.charAt(leftPrefix) == original.charAt(leftOriginal)) {
+                leftPrefix++;
+                leftOriginal++;
+            } else {
+                leftOriginal++;
+            }
+        }
+        return leftPrefix == prefix.length();
+
+    }
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int lengthCombined = nums1.length + nums2.length;
 
