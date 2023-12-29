@@ -262,6 +262,9 @@ public class test {
         String shufflemerge1 = "jjddgc";
         String shufflemerge2 = "jjcddjggcdjd";
         System.out.println(isInMerge(shufflemerge1, shufflemerge2));
+
+        System.out.println("====================================");
+        System.out.println(SolutionZigzagConversion.convert("PAYPALISHIRING", 3));
     }
 
     private static boolean isInMerge(String prefix, String original) {
@@ -2962,6 +2965,37 @@ public class test {
             }
 
             return eaten;
+        }
+    }
+
+    static class SolutionZigzagConversion {
+        public static String convert(String s, int numRows) {
+            String result = "";
+            int zig = numRows - 2;
+            int firstAndLastLineMagicNumber = numRows + zig;
+            int left = 0;
+            int right = 0;
+            for (int i = 0; i < numRows; i++) {
+                if (i == 0 || i == numRows - 1) {
+                    left = firstAndLastLineMagicNumber;
+                    right = firstAndLastLineMagicNumber;
+                } else {
+                    left = firstAndLastLineMagicNumber - (i * 2);
+                    right = (i * 2);
+                }
+                result += CalculateTheLineString(s, left, right, i);
+            }
+            return result;
+        }
+
+        private static String CalculateTheLineString(String s, int left, int right, int line) {
+            boolean isLeft = false;
+            String subResult = "";
+            for (int i = line; i < s.length(); i += isLeft ? left : right) {
+                isLeft = !isLeft;
+                subResult += s.charAt(i);
+            }
+            return subResult;
         }
     }
 }
