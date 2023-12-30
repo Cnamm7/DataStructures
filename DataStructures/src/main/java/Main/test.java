@@ -3119,6 +3119,50 @@ public class test {
             return false;
         }
     }
+
+    class ResultLisaWorkBook {
+
+        /*
+         * Complete the 'workbook' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts following parameters:
+         *  1. INTEGER n
+         *  2. INTEGER k
+         *  3. INTEGER_ARRAY arr
+         */
+
+        public static int workbook(int n, int k, List<Integer> arr) {
+            // Write your code here
+            int pageCount = 0;
+            int specialProblem = 0;
+
+            for (int i = 0; i < n; i++) {
+                if (arr.get(i) <= k) {
+                    pageCount++;
+                    for (int m = 1; m <= arr.get(i); m++) {
+                        if (pageCount == m) specialProblem++;
+                    }
+                } else if (arr.get(i) > k) {
+                    int j = arr.get(i);
+                    int start = 1;
+                    int end = k;
+                    while (j > 0) {
+                        pageCount++;
+                        j -= k;
+                        int endItterator = j > 0 ? end : arr.get(i);
+                        for (int m = start; m <= endItterator; m++) {
+                            if (m == pageCount) specialProblem++;
+                        }
+                        start += k;
+                        end += k;
+                    }
+                }
+            }
+
+            return specialProblem;
+        }
+    }
 }
 
 
