@@ -2,6 +2,7 @@ package Main;
 
 import java.math.BigInteger;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -265,6 +266,10 @@ public class test {
 
         System.out.println("====================================");
         System.out.println(SolutionZigzagConversion.convert("A", 1));
+
+        System.out.println(SolutionMinimumDifficultyOfaJobSchedule.minDifficulty(new int[] {11, 111, 22, 222, 33, 333, 44, 444}, 6));
+
+        System.out.println(SolutionFourSum.fourSum(new int[] {186,398,479,206,885,423,805,112,925,656,16,932,740,292,671,360}, 1803));
     }
 
     private static boolean isInMerge(String prefix, String original) {
@@ -2999,6 +3004,119 @@ public class test {
                 subResult.append(s.charAt(i));
             }
             return subResult.toString();
+        }
+    }
+
+    class SolutionMinimumDifficultyOfaJobSchedule {
+        public static int minDifficulty(int[] jobDifficulty, int d) {
+            int result = 0;
+            if (d > jobDifficulty.length) {
+                return -1;
+            }
+            // first find the max and add it to the set of choosen
+            // then for each day, find the first min in subarray right of max and second min in subarray left of max
+            // if there is another number after the min (after means the number is not between max and min, but in the outer window to the right or left of min) select that as nominate and compare with other nominations and choose smaller one
+            // continue the process until it is finished
+            int maxIndex = 0;
+            Set<Integer> chosen = new HashSet<>();
+            for (int i = 1; i < jobDifficulty.length; i++) {
+                if (jobDifficulty[i] > jobDifficulty[maxIndex]) {
+                    maxIndex = i;
+                }
+            }
+            chosen.add(maxIndex);
+            int days = 1;
+            int prevLeftMinIndex = -1;
+            int prevRightMinIndex = -1;
+            while (days < d) {
+                int leftMin= Integer.MAX_VALUE;
+                int leftMinIndex = -1;
+                int rightMin = Integer.MAX_VALUE;
+                int rightMinIndex = -1;
+                int toAdd = -1;
+                for (int j = 0; j < maxIndex; j++) {
+                    if (!chosen.contains(j) && jobDifficulty[j] < leftMin) {
+                        leftMin = jobDifficulty[j];
+                        leftMinIndex = j;
+                    }
+                }
+
+                if (leftMinIndex > 0) {
+                    if (!isChosenBefore(chosen, 0, leftMinIndex - 1)) {
+                        prevLeftMinIndex = leftMinIndex;
+                        for (int m = leftMinIndex - 1; m >= 0; m--) {
+                            if (jobDifficulty[m] > jobDifficulty[leftMinIndex]) {
+                                leftMinIndex = m;
+                            }
+                        }
+                    } else if (prevLeftMinIndex != -1 && leftMinIndex != -1 && prevLeftMinIndex != leftMinIndex) {
+                        prevLeftMinIndex = leftMinIndex;
+                        for (int m = leftMinIndex - 1; m >= 0; m--) {
+                            if (!chosen.contains(m) && jobDifficulty[m] > jobDifficulty[leftMinIndex]) {
+                                leftMinIndex = m;
+                            }
+                        }
+                    }
+                } else if (leftMinIndex == 0){
+                    prevLeftMinIndex = leftMinIndex;
+                }
+
+
+
+
+
+                for (int k = maxIndex + 1; k < jobDifficulty.length; k++) {
+                    if (!chosen.contains(k) && jobDifficulty[k] < rightMin) {
+                        rightMin = jobDifficulty[k];
+                        rightMinIndex = k;
+                    }
+                }
+
+                if (rightMinIndex < jobDifficulty.length - 1) {
+                    if (!isChosenBefore(chosen, rightMinIndex + 1, jobDifficulty.length - 1)) {
+                        prevRightMinIndex = rightMinIndex;
+                        for (int n = rightMinIndex + 1; n < jobDifficulty.length - 1; n++) {
+                            if (jobDifficulty[n] > jobDifficulty[rightMinIndex]) {
+                                rightMinIndex = n;
+                            }
+                        }
+                    } else if (prevRightMinIndex != -1 && rightMinIndex != -1 && prevRightMinIndex != rightMinIndex) {
+                        prevRightMinIndex = rightMinIndex;
+                        for (int n = rightMinIndex + 1; n < jobDifficulty.length - 1; n++) {
+                            if (!chosen.contains(n) && jobDifficulty[n] > jobDifficulty[rightMinIndex]) {
+                                rightMinIndex = n;
+                            }
+                        }
+                    }
+                } else if (rightMinIndex == jobDifficulty.length - 1) {
+                    prevRightMinIndex = rightMinIndex;
+                }
+
+
+
+                if (rightMinIndex == -1) {
+                    toAdd = leftMinIndex;
+                } else if (leftMinIndex == -1) {
+                    toAdd = rightMinIndex;
+                } else {
+                    toAdd = jobDifficulty[rightMinIndex] < jobDifficulty[leftMinIndex] ? rightMinIndex : leftMinIndex;
+                }
+
+                chosen.add(toAdd);
+                days++;
+            }
+
+            for (int chose : chosen) {
+                result += jobDifficulty[chose];
+            }
+            return result;
+        }
+
+        private static boolean isChosenBefore(Set<Integer> chosen, int min, int max) {
+            for (int i = min; i <= max; i++) {
+                if (chosen.contains(i)) return true;
+            }
+            return false;
         }
     }
 }
