@@ -239,10 +239,6 @@ public class test {
         System.out.println(ResultPoisonous.poisonousPlants(Arrays.asList(inputPoisonous)));
 
         System.out.println("====================================");
-        String inputReverseShuffleMerge = "abcdefgabcdefg";
-        System.out.println(ResultReverseShuffleMerge.reverseShuffleMerge(inputReverseShuffleMerge));
-
-        System.out.println("====================================");
         System.out.println(findNValue(8));
 
         System.out.println("====================================");
@@ -270,6 +266,10 @@ public class test {
         System.out.println(SolutionMinimumDifficultyOfaJobSchedule.minDifficulty(new int[] {11, 111, 22, 222, 33, 333, 44, 444}, 6));
 
         System.out.println(SolutionFourSum.fourSum(new int[] {186,398,479,206,885,423,805,112,925,656,16,932,740,292,671,360}, 1803));
+
+        System.out.println("====================================");
+        String inputReverseShuffleMerge = "aeiouuoiea";
+        System.out.println(ResultReverseShuffleMerge.reverseShuffleMerge(inputReverseShuffleMerge));
     }
 
     private static boolean isInMerge(String prefix, String original) {
@@ -2654,7 +2654,7 @@ public class test {
         }
     }
 
-    static class ResultReverseShuffleMerge {
+    class ResultReverseShuffleMerge {
 
         /*
          * Complete the 'reverseShuffleMerge' function below.
@@ -2663,44 +2663,89 @@ public class test {
          * The function accepts STRING s as parameter.
          */
 
-        public static String reverseShuffleMerge(String s) {
-            // Write your code here
-            Map<Character, Integer> charMap = new HashMap<>();
-            for (int i = 0; i < s.length(); i++) {
-                charMap.put(s.charAt(i), charMap.getOrDefault(s.charAt(i), 0) + 1);
-            }
-            char[] s1 = new char[s.length() / 2];
-            int j = 0;
+//        public static String reverseShuffleMerge(String s) {
+//            s = reverse(s);
+//            Map<Character, Integer> charCount = new HashMap<>();
+//            for (int i = 0; i < s.length(); i++) {
+//                char c = s.charAt(i);
+//                charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+//            }
+//            char[] charachters = new char[s.length()/2];
+//            int j = 0;
+//            Map<Character, Integer> cloneCharCount = new HashMap<>(charCount);
+//            for (int i = 0; i < s.length(); i++) {
+//                char c = s.charAt(i);
+//                if (cloneCharCount.get(c) > 0) {
+//                    charachters[j] = c;
+//                    cloneCharCount.put(c, cloneCharCount.get(c) - 2);
+//                    j++;
+//                }
+//            }
+//            List<String> possiblities = shuffle(new String(charachters), s);
+//            System.out.println(possiblities);
+//            String lowestLexicography = "";
+//            for (String possible : possiblities) {
+//                if (lowestLexicography == "") {
+//                    lowestLexicography = possible;
+//                } else if (possible.compareTo(lowestLexicography) < 0) {
+//                    lowestLexicography = possible;
+//                }
+//            }
+//            return lowestLexicography;
+//        }
 
+        public static String reverseShuffleMerge(String s) {
+            s = reverse(s);
+            Map<Character, Integer> charFrequency = new HashMap<>();
+            List<String> possiblities = new ArrayList<>();
             for (int i = 0; i < s.length(); i++) {
-                if (charMap.get(s.charAt(i)) > 0) {
-                    s1[j] = s.charAt(i);
-                    charMap.put(s.charAt(i), charMap.get(s.charAt(i)) - 2);
+                char c = s.charAt(i);
+                charFrequency.put(c, charFrequency.getOrDefault(c, 0) + 1);
+            }
+            int length = s.length()/2;
+            Set<Character> startChars = new HashSet<>();
+            for (int i = 0; i <= length; i++) {
+                if (startChars.contains(s.charAt(i))) continue;
+                String possible = "";
+                Map<Character, Integer> charFrequencyClone = new HashMap<>(charFrequency);
+                possible += s.charAt(i);
+                startChars.add(s.charAt(i));
+                charFrequencyClone.put(s.charAt(i), charFrequencyClone.get(s.charAt(i)) - 2);
+                int j = i + 1;
+
+                int itteration = i + length;
+                while (j < itteration) {
+                    int window = Math.min(j + length + 1, s.length());
+                    char[] sub = s.substring(j, window).toCharArray();
+                    char leastValue = 65535;
+                    for (char c : sub) {
+                        if (charFrequencyClone.get(c) > 0 && c < leastValue) {
+                            leastValue = c;
+                        }
+                    }
+                    charFrequencyClone.put(leastValue, charFrequencyClone.get(leastValue) - 2);
+                    possible += leastValue;
                     j++;
                 }
+                possiblities.add(possible);
             }
-
-            List<String> shuffles = shuffle(new String(s1));
-
-            String TheLeastLexicographically = "";
-
-            for (String shuffle : shuffles) {
-                if (s.contains(reverse(shuffle))) {
-                    if (TheLeastLexicographically == "") {
-                        TheLeastLexicographically = shuffle;
-                    } else if (shuffle.compareTo(TheLeastLexicographically) < 0) {
-                        TheLeastLexicographically = shuffle;
-                    }
+            System.out.println(possiblities);
+            String leastLexicography = "";
+            for (String possible : possiblities) {
+                if (leastLexicography == "") {
+                    leastLexicography = possible;
+                } else if (possible.compareTo(leastLexicography) < 0) {
+                    leastLexicography = possible;
                 }
             }
-
-            return TheLeastLexicographically;
+            return leastLexicography;
         }
 
-        private static String reverse(String s) {
+
+        private static String reverse(String input) {
             int left = 0;
-            int right = s.length() - 1;
-            char[] charArray = s.toCharArray();
+            int right = input.length() - 1;
+            char[] charArray = input.toCharArray();
             while (left < right) {
                 char temp = charArray[left];
                 charArray[left] = charArray[right];
@@ -2711,22 +2756,38 @@ public class test {
             return new String(charArray);
         }
 
-        private static List<String> shuffle(String s) {
+        private static List<String> shuffle(String s, String original) {
             List<String> shuffles = new ArrayList<>();
 
-            shuffle("", s, shuffles);
+            shuffle("", s, shuffles, original);
 
             return shuffles;
         }
 
-        private static void shuffle(String prefex, String s, List<String> shuffles) {
-            if (s.length() == 0) {
-                shuffles.add(prefex);
+        private static void shuffle(String prefix, String s, List<String> shuffles, String original) {
+            if (s.length() == 0 && isInMerge(prefix, original)) {
+                shuffles.add(prefix);
             } else {
                 for (int i = 0; i < s.length(); i++) {
-                    shuffle(prefex + s.charAt(i), s.substring(0, i) + s.substring(i + 1, s.length()), shuffles);
+                    shuffle(prefix + s.charAt(i), s.substring(0, i) + s.substring(i + 1, s.length()), shuffles, original);
                 }
             }
+        }
+
+        private static boolean isInMerge(String prefix, String original) {
+            int leftOriginal = 0;
+            int leftPrefix = 0;
+            while (leftPrefix < prefix.length() && leftOriginal < original.length()) {
+                if (prefix.charAt(leftPrefix) == original.charAt(leftOriginal)) {
+                    leftPrefix++;
+                    leftOriginal++;
+                } else {
+                    leftOriginal++;
+                }
+            }
+            if (leftPrefix == prefix.length()) return true;
+            return false;
+
         }
 
         private static List<String> merge(String s1, String s2) {
@@ -3161,6 +3222,29 @@ public class test {
             }
 
             return specialProblem;
+        }
+    }
+
+    public class SolutionFlatLandSpaceStation {
+
+        // Complete the flatlandSpaceStations function below.
+        static int flatlandSpaceStations(int n, int[] c) {
+
+            List<Integer> minDistances = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                int min = Integer.MAX_VALUE;
+                for (int j = 0; j < c.length; j++) {
+                    min = Math.min(min, Math.abs(i - c[j]));
+                }
+                minDistances.add(min);
+            }
+            int max = -1;
+            for (int j : minDistances) {
+                if (j > max) {
+                    max = j;
+                }
+            }
+            return max;
         }
     }
 }
