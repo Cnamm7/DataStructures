@@ -3247,6 +3247,35 @@ public class test {
             return max;
         }
     }
+
+    class ResultCavityMap {
+
+        /*
+         * Complete the 'cavityMap' function below.
+         *
+         * The function is expected to return a STRING_ARRAY.
+         * The function accepts STRING_ARRAY grid as parameter.
+         */
+
+        public static List<String> cavityMap(List<String> grid) {
+            // Write your code here
+            for (int i = 1; i < grid.size() - 1; i++) {
+                for (int j = 1; j < grid.size() - 1; j++) {
+                    char center = grid.get(i).charAt(j);
+                    char left = grid.get(i).charAt(j - 1);
+                    char right = grid.get(i).charAt(j + 1);
+                    char top = grid.get(i - 1).charAt(j);
+                    char bottom = grid.get(i + 1).charAt(j);
+                    if (center > left && center > right && center > top && center > bottom) {
+                        char[] element = grid.get(i).toCharArray();
+                        element[j] = 'X';
+                        grid.set(i, new String(element));
+                    }
+                }
+            }
+            return grid;
+        }
+    }
 }
 
 
