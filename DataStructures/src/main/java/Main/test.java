@@ -3276,6 +3276,65 @@ public class test {
             return grid;
         }
     }
+
+    class ResultManasaAndStones {
+
+        /*
+         * Complete the 'stones' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts following parameters:
+         *  1. INTEGER n
+         *  2. INTEGER a
+         *  3. INTEGER b
+         */
+
+        public static List<Integer> stones(int n, int a, int b) {
+            // Write your code here
+            List<List<Integer>> possiblities = new ArrayList<>();
+            List<Integer> first = new ArrayList<>();
+
+            first.add(0);
+
+            possiblities.add(first);
+
+            for (int i = 0; i < n - 1; i++) {
+                List<Integer> newList = new ArrayList<>();
+                for (int j = 0; j < possiblities.get(i).size(); j++) {
+                    int sum1 = possiblities.get(i).get(j) + a;
+                    int sum2 = possiblities.get(i).get(j) + b;
+                    if (!newList.contains(sum1)) newList.add(sum1);
+                    if (!newList.contains(sum2)) newList.add(sum2);
+                }
+                possiblities.add(newList);
+            }
+
+            Set<Integer> filtering = new HashSet<>(possiblities.get(possiblities.size() - 1));
+
+            return filtering.stream().sorted().collect(Collectors.toList());
+        }
+
+        public static List<Integer> premutationStones(int n, int a, int b) {
+            // Write your code here
+            Set<Integer> possiblities = new HashSet<>();
+
+            premutationStones(n, a, b, possiblities, 0, 1);
+
+            List<Integer> outcome = new ArrayList<>(possiblities);
+            return outcome.stream().sorted().collect(Collectors.toList());
+        }
+
+        private static void premutationStones(int n, int a, int b, Set<Integer> possiblities, int sum, int start) {
+            if (start == n) {
+                possiblities.add(sum);
+                return;
+            }
+
+            premutationStones(n, a, b, possiblities, sum + a, start + 1);
+            premutationStones(n, a, b, possiblities, sum + b, start + 1);
+        }
+
+    }
 }
 
 
