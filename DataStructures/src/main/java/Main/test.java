@@ -3379,6 +3379,31 @@ public class test {
             return true;
         }
     }
+
+    class ResultStrangeCounter {
+
+        /*
+         * Complete the 'strangeCounter' function below.
+         *
+         * The function is expected to return a LONG_INTEGER.
+         * The function accepts LONG_INTEGER t as parameter.
+         */
+
+        public static long strangeCounter(long t) {
+            // Write your code here
+            long start = 0;
+            long reached = 0;
+            int j = 0;
+            while (reached < t) {
+                start = reached;
+
+                reached += (long) (3 * Math.pow(2, j));
+                j++;
+            }
+
+            return (long) (3 * Math.pow(2, j - 1)) + (start + 1 - t);
+        }
+    }
 }
 
 
