@@ -3309,9 +3309,7 @@ public class test {
                 possiblities.add(newList);
             }
 
-            Set<Integer> filtering = new HashSet<>(possiblities.get(possiblities.size() - 1));
-
-            return filtering.stream().sorted().collect(Collectors.toList());
+            return possiblities.get(possiblities.size() - 1).stream().sorted().collect(Collectors.toList());
         }
 
         public static List<Integer> premutationStones(int n, int a, int b) {
@@ -3333,7 +3331,53 @@ public class test {
             premutationStones(n, a, b, possiblities, sum + a, start + 1);
             premutationStones(n, a, b, possiblities, sum + b, start + 1);
         }
+    }
 
+    class ResultHappyLadyBugs {
+
+        /*
+         * Complete the 'happyLadybugs' function below.
+         *
+         * The function is expected to return a STRING.
+         * The function accepts STRING b as parameter.
+         */
+
+        public static String happyLadybugs(String b) {
+            // Write your code here
+            if (isHappy(b)) return "YES";
+            Map<Character, Integer> characterMap = new HashMap<>();
+
+            for (int i = 0; i < b.length(); i++) {
+                characterMap.put(b.charAt(i), characterMap.getOrDefault(b.charAt(i), 0) + 1);
+            }
+
+            if (characterMap.containsKey('_')) {
+                for (char c : characterMap.keySet()) {
+                    if (c != '_' && characterMap.get(c) == 1) return "NO";
+                }
+                return "YES";
+            }
+            return "NO";
+        }
+
+        private static boolean isHappy(String b) {
+            if (b.length() == 1) {
+                if (b.charAt(0) == '_') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            for (int i = 0; i < b.length(); i++) {
+                if (i == 0 || i == b.length() - 1) {
+                    if (i == 0 && b.charAt(i) != b.charAt(i + 1)) return false;
+                    if (i == b.length() - 1 && b.charAt(i - 1) != b.charAt(i)) return false;
+                } else if (b.charAt(i - 1) != b.charAt(i) && b.charAt(i) != b.charAt(i + 1)) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
 
