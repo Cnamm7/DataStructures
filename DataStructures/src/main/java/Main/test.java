@@ -3404,6 +3404,35 @@ public class test {
             return (long) (3 * Math.pow(2, j - 1)) + (start + 1 - t);
         }
     }
+
+    class ResultServiceLane {
+
+        /*
+         * Complete the 'serviceLane' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts following parameters:
+         *  1. INTEGER n
+         *  2. 2D_INTEGER_ARRAY cases
+         */
+
+        public static List<Integer> serviceLane(int n, List<List<Integer>> cases, List<Integer> width) {
+            // Write your code here
+            List<Integer> maxVehicleWidth = new ArrayList<>();
+            for (List<Integer> aCase : cases) {
+                int min = Integer.MAX_VALUE;
+                for (int j = aCase.get(0); j <= aCase.get(1); j++) {
+                    if (width.get(j) < min) {
+                        min = width.get(j);
+                    }
+                }
+                maxVehicleWidth.add(min);
+                System.out.println(aCase);
+            }
+            return maxVehicleWidth;
+
+        }
+    }
 }
 
 
