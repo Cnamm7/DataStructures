@@ -3433,6 +3433,28 @@ public class test {
 
         }
     }
+
+    class SolutionReverseInteger
+    {
+        public int reverse(int x) {
+            char[] chars = Integer.toString(x).toCharArray();
+            int left = x < 0 ? 1 : 0;
+            int right = chars.length - 1;
+            while (left < right) {
+                char temp = chars[left];
+                chars[left] = chars[right];
+                chars[right] = temp;
+                left++;
+                right--;
+            }
+            long response = Long.parseLong(new String(chars));
+            if (response > Integer.MAX_VALUE || response < Integer.MIN_VALUE) {
+                return 0;
+            } else {
+                return (int) response;
+            }
+        }
+    }
 }
 
 
