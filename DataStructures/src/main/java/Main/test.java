@@ -268,7 +268,7 @@ public class test {
         System.out.println(SolutionFourSum.fourSum(new int[] {186,398,479,206,885,423,805,112,925,656,16,932,740,292,671,360}, 1803));
 
         System.out.println("====================================");
-        String inputReverseShuffleMerge = "aeiouuoiea";
+        String inputReverseShuffleMerge = "ouuoooooouoououuoouuuoouooououuououuuououuouuoouooooouooouoououoouuuuoouuouuoooouuuuouuuooouoouooooooououuooooouuuuuooouuooouuuoouuououuoouooououououououououuouuuoouuoouoouuoouuuoouuoouuoouuooouuuoouuooooouuuouoouoououooouoooouuuouoououuououuuoouooouooououuooouuouuuoouoouooouuoooouuouuoooouoouuuuouoooouuouuouoouoououuouuuououuuuuuouoooououuooooouuooououooooouoooouuoououuuuuououuuuooouuououuuoouououuooouuouooouuoouuoouuoooooouuoouuuuouuuoooouuuuuouoouuuuuooooouuoouuouuuuouuuooouuouuuooouuoouououououuuouuoouuoououououuuuuuouuuuuuouoooouuuuuooooouuououuuuoooooouuoouuououuooouuoouoouuouououooouoouooouoououooouuoooouuououuouuuoouooooouuouououuoououuouuuoouuuuuoouoouooououooouoouuuuoouuoououooououuououoouoouoouuouuooooouuuooooooouuoouuuuuuouuoouuuuuooououuooouuoouooouoouuouuuuoouooouuuuoooooouuouuouooouoooooooooouuoouuouoooouooououuoouuuuuouuuoououououuuoououuouuooouuuuouuouuouuooooooouuououuuuooouuououoooouuoooooououoouoooouuuuuooououououuuouoouuuooouuouuuouuoooououuuuuuououuouuuuoouuoooouuouooouooooouuuouoooouuouuououuuuuuooouuuouoououoooooouuoouuouuuuuuouuuuuuuouuuuooouuouoououuououoooooouuuuooouuouuoooouuuouououooouoouuuouoooouooouoouuuuooououuuouuuoouuoouououuuouuuuouuoouuuooouoouuoouuuuouuouooouuuuuuuouuuouuouuuuuoouuuououooooooouuuouuuuoouuoououoouuoouuouuoouuuuuooouuuouuoooouuoouuouuouuooooooouuooooououuuoououuuuuuuuuuoooouoououuououuouoouuuoououououuouuoooooooouuoooooouoouuouoououoououuooooooooouuuououuuuuuuooooouuuooouuuououuuuuuuouuooouoouoouuuouoooouoouoooououuuuooouououuouuuououuuuoouuouuuoooooooououououooouooouououuouuuouooouoooouooouououoooooououuuoooouoououuuuouooooouuoouuoououuooouuuuouououoouuuoouuouuouuooouoooooooouuouuoouooouuuuuououuuooooouououououoouuoouuuouooouooouooouuooouoououoouooooouuuuuuoouoouououooououuuououoouuououuuoououououoouoouuuuuoouoououuououuoouuooouuuuuouoouoouoouuuouoooooouoooouuooououououuouuouuuouoouooouououuuoououooouoouuouuuoooooouuuuuooouououuuouuouoououoouuuuouououuuoouououououuuououououuouuooouooooooouoouououuuuuuuoooooouoouoouuuouuuouououoouuuououuouooouuouuooooooouooouooouuoouuuooouuuouoooouuouuuoouououuuuooouououoouooouoouuouuouooouooooouuuuuooouuuuouuouuuouooouuoouuououuuououuooooouuooouououuoouuuouuuuoooooooouuouououooououooouoouuooououuoooooouuouoooooouoooouoouououuououuuooouuoouuuuooooouuoouooooouuouooooooooouoooooouuuuuooooououoooooouuoououououoooooououooooooooouuuouuouuuuuououoouuuuuouoouuuuuuuououuouooooouoouuoououuoouuuoououuououoouuuouoouuuuuuuuuoouuuuoooooouuuuoouoouoouuooouooouooooouuuouuuuoouooouuououuooooououuouuuuuooouuoouuouoouuooouuuoouooooouuoououuouuououuoouoouououuuuouuoooooooououuuouoooouououooouooooououuuououuououuuouououuouuuououuuuuoooououuoouoouuououuuoouooouuouuuuuoouuuuouuuooooooouuouuuuuoooooouuouooouuuuuuouooououuuoouuouoououououoouuoouououoooouuuuuouuoouuouuoouuuoouououuuooooooooouuuoouuouoooouoooououuuooouoooouououououuuouoouoououooooououuouuuuuouooooouuououooooououoouuooouuooouoououuoouuoouoououuouuuouooouuuouuoouuouuuououuoouuouooouuuuuuoouuoououuouoouuoouuououuuuouuuooouououooouoouuouuoouuoooououuoouuooooouoououoouoouooouooououuouuuuuooououoouuououuuuuoouuuuuuouuuuouuuuoouuouuuououuuouuoouuouuouuooouoououuuouoouuuoououuououuuuuoouououuouoooooouooooououuouououooouuouooooooooouuuuoououoouuoooooouuoouuuuuooouuuouoouuoououuououooouuoouooouuuoouoououuuououuouuuuoouuuuouooouuuooooououuuoouuuooouuuoouuuouuoououooouuouooooouuouoououoououuuouoouuuoooouuuuouoooooouuuoououoououuoouuuuuuouuuuuuuoouuuuuoououuuouuuooouuouoouuoouuuouuuuooouoouoouooouuooouooouuouuuuououuuuoououooouuuouoooouuuuuuououuuouuuuooouuouooouuouuuuuuuouooouuuuuouuuuooooouoouuoouuuoouooouuuuoouuuooouuuouuoouuoououuooouuuouoooooooououuuouououuooououuouuouuouuoooouuuuuuoooouuoououuoouuouuoouooooouoouooouuooouooooouoouooouuuoooouuuouuuooououooouoouuuooououoououoououooooooouuououuuuuouuuouuoooouuuuooooouuuuuoouoooouuuuuouooouououuuoouuouoooouuoouoouuouououuooouuuouuouuuuoouoououoouuouuuoooouuououoouuuouoououuuuuooooooououuuooooououuoouoouuoouuuuuoooouuoouuuouoouoouoouuouoouuououuuuoouoouoououuouuuuoouooououuouuououuoouououuuoouooooouuouuuououoouooouoouooooouoouuuouuouuooooouuouuuuuoouuuuuouuuuuuuuouuuouuuuuoouuooouuooooooouoouuuuuuouoouuuouououuouuoouuououuuooouoooouuooouuoououoouooouuouououoooooooouuuooouuuououoooouuuoouuououoooouooooouuouoooououuoouooouuuuououuuouououooououuuooouuuouououuuououoououuuuoouooouuoououooououoooouuouuoououoouoouuuuuooouuuoooouuouuououuououuoouuoooouoooououuuuuuoouoooooouoooouuoouuooouuoouoououuoouuoouuouoouoouooooooooooouuouoooouuuuouoouuouuuuuouooououoouoooooooouuuoouooooouuuuuuouuuooouuuuoouoouuuuuouoouuuuuouuouuuouoouoooouoouououooouuuuooooouuoouuouuooooooouuououououoooououuuououooouuououououuuoououoououuoouoouuouoouoouuuuoouooouuuuuoooooouuuooouuououououuoooouuoouoouoouuuuuuuouuuuuuoouuuuuuooouuuooooouuuouuuuouuuuuuuououuouuoouuoouuuouuouououoouuoouuooooouuuuooououoouoouoououuuoooooouoooooouuouooouoouoouuououuouuuuooooouuuooooouuouuuooououuuoououuouoooououuooouuuouooouoooouuouuuuuoooouuuouuuuuuuoououuooooooouooouooooooouuuoouoouuouooouuouoouuooouououuuuuoououuuoooououuouoouuouoououuoouuuuuuuuoouououuuuuouuuoouuooooouououoououououoouoouoouuuuouoououuuouuoouuuuouuuoouououuoooouuouooououoouououuuuuooououoouuoouoouoououuuoouuuuuuoooouuuoooouoooououuouuuuoouuououuouoououuuoouuoououuuoooouuouooouoouooouoououooooouuoooouuuouuuuouuououuuououuouoouooooouoouuooouuuouuuuuuuuouuuuououuuouoooououuuooooouoouuuuuoououoooouuuouououoouuouuuoouuooouoouoooouooooouooououuoououoooououuouuoooouoooouoouuoouuoouuuuuuuuuouuuuououoououoouuuuouoooououuououuuouuoouooooouuuoooouuuoououuouuouuuuuuuuuuuoooouoouuuuuouuoooooououuuoouuuoououuoouuoooouououoouoouooouoououuuooooouuoouuuuuuuoouooouoouuooouuoouououuoooouuuuouuuouoouuuuuuuouuuouoououuuuououuuuououooouuuuouuouououooououuuuuooouuououooouoooououououuuoooouooououuouoououououuoouuoououooouooouuuuuooouuooouuuuuououoouoooouuuoouuouooouooouououooouuuoouuoooouuuoouuouuuouuooououoooououuuuououououououooououuoooouuuouuououuoououooouuuuouuuuooouuuoouuoouuuuuuuuouououououuououooouooouooouououuuuuuuoouuoououuououoouuoooououuouuuuuuuouuooouoouooouoouuuuuuoouuuoououoououuuouuouooooouuuouuuoououooouuoouuoouououoouoouuouuooouuuoooououuuoouuuooooouuoooouuuuooooooouuuuououoouuuooouuoouooooouououooouuoouuouooouuouooooooouuouuoouuuuuuuuoooouuuuuuuouoouuoooououoouooouuouuoououuoooououououoouooouuouuouoouuouuooououuoououuouuuuoooooouuoouuouuuoouoouuuuoouuuooouooouoouuouoooouuoouuuuouoououuuuooouuouuuuuuouuooououuuuuooouuuoouoooooououuoooooooouuouuuooouoouoouuooooouoouooooououuouuuooououoououoooouuouoouuouuouuoouuuuoooouoouoouoooooouuuoouoooouoooouoouuuoouuooooouuoouuuuuouuoouuouuoouuuouuuouuooouoouooouoooooouuuuouuouuuoouououuouuuuuuuouuoooooooouououuoooouuouuuoouuuuuuuouuoooouooooouooouuuuuuouuoououooouooooououoooououoooooouooououoouuuuuuuoououuuuoououuoououououuuouooooouuuooouuuououuooouuuuuuuuououuuuouooououooooouoooououuooooououuouoouuouooouoouooouoooouououuouuoooouoouuuuuooouuuuuouuouoouoooouuouuuuoouououuuuuuuuuuuouoouoooooouuouuuooououoouououuouuuuouuuuuuouuuuouuuuuouuouououooooouoooououoouuuuou";
         System.out.println(ResultReverseShuffleMerge.reverseShuffleMerge(inputReverseShuffleMerge));
     }
 
@@ -2663,84 +2663,63 @@ public class test {
          * The function accepts STRING s as parameter.
          */
 
-//        public static String reverseShuffleMerge(String s) {
-//            s = reverse(s);
-//            Map<Character, Integer> charCount = new HashMap<>();
-//            for (int i = 0; i < s.length(); i++) {
-//                char c = s.charAt(i);
-//                charCount.put(c, charCount.getOrDefault(c, 0) + 1);
-//            }
-//            char[] charachters = new char[s.length()/2];
-//            int j = 0;
-//            Map<Character, Integer> cloneCharCount = new HashMap<>(charCount);
-//            for (int i = 0; i < s.length(); i++) {
-//                char c = s.charAt(i);
-//                if (cloneCharCount.get(c) > 0) {
-//                    charachters[j] = c;
-//                    cloneCharCount.put(c, cloneCharCount.get(c) - 2);
-//                    j++;
-//                }
-//            }
-//            List<String> possiblities = shuffle(new String(charachters), s);
-//            System.out.println(possiblities);
-//            String lowestLexicography = "";
-//            for (String possible : possiblities) {
-//                if (lowestLexicography == "") {
-//                    lowestLexicography = possible;
-//                } else if (possible.compareTo(lowestLexicography) < 0) {
-//                    lowestLexicography = possible;
-//                }
-//            }
-//            return lowestLexicography;
-//        }
-
         public static String reverseShuffleMerge(String s) {
             s = reverse(s);
             Map<Character, Integer> charFrequency = new HashMap<>();
-            List<String> possiblities = new ArrayList<>();
+            int length = s.length()/2;
+
             for (int i = 0; i < s.length(); i++) {
                 char c = s.charAt(i);
                 charFrequency.put(c, charFrequency.getOrDefault(c, 0) + 1);
             }
-            int length = s.length()/2;
-            Set<Character> startChars = new HashSet<>();
-            for (int i = 0; i <= length; i++) {
-                if (startChars.contains(s.charAt(i))) continue;
-                String possible = "";
-                Map<Character, Integer> charFrequencyClone = new HashMap<>(charFrequency);
-                possible += s.charAt(i);
-                startChars.add(s.charAt(i));
-                charFrequencyClone.put(s.charAt(i), charFrequencyClone.get(s.charAt(i)) - 2);
-                int j = i + 1;
 
-                int itteration = i + length;
-                while (j < itteration) {
-                    int window = Math.min(j + length + 1, s.length());
-                    char[] sub = s.substring(j, window).toCharArray();
-                    char leastValue = 65535;
-                    for (char c : sub) {
-                        if (charFrequencyClone.get(c) > 0 && c < leastValue) {
-                            leastValue = c;
-                        }
+            int windowSize = length + 1;
+            int tracker = 0;
+            StringBuilder result = new StringBuilder();
+            while (windowSize <= s.length()) {
+                String sub = s.substring(tracker, windowSize);
+
+                Queue<Character> priorityQueue = new PriorityQueue<>();
+                for (char c : sub.toCharArray()) {
+                    if (!priorityQueue.contains(c)) {
+                        priorityQueue.add(c);
                     }
-                    charFrequencyClone.put(leastValue, charFrequencyClone.get(leastValue) - 2);
-                    possible += leastValue;
-                    j++;
                 }
-                possiblities.add(possible);
-            }
-            System.out.println(possiblities);
-            String leastLexicography = "";
-            for (String possible : possiblities) {
-                if (leastLexicography == "") {
-                    leastLexicography = possible;
-                } else if (possible.compareTo(leastLexicography) < 0) {
-                    leastLexicography = possible;
+
+                char temp = 0;
+                int index = 0;
+                while (priorityQueue.size() > 0) {
+                    temp = priorityQueue.remove();
+                    index = s.indexOf(temp, tracker);
+                    if (charFrequency.get(temp) > 0 && isFeasible(index, tracker, windowSize, s, charFrequency)) {break;}
                 }
+                tracker = index + 1;
+                result.append(temp);
+                charFrequency.put(temp, charFrequency.get(temp) - 2);
+                windowSize++;
             }
-            return leastLexicography;
+
+            return result.toString();
         }
 
+        private static boolean isFeasible(int index, int start, int end, String s, Map<Character, Integer> charFrequency) {
+            Set<Character> seen = new HashSet<>();
+            for (int i = start; i < end; i++) {
+                if (i == index || charFrequency.get(s.charAt(i)) == 0 || seen.contains(s.charAt(i))) continue;
+                int count = s.charAt(index) == s.charAt(i) ? 1 : 0;
+                int found = index;
+                while (found != -1) {
+                    found = s.indexOf(s.charAt(i), found + 1);
+                    if (found != -1) count++;
+                }
+
+                if (count == 0 || count < charFrequency.get(s.charAt(i)) / 2) {
+                    return false;
+                }
+                seen.add(s.charAt(i));
+            }
+            return true;
+        }
 
         private static String reverse(String input) {
             int left = 0;
