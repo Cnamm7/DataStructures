@@ -3434,6 +3434,56 @@ public class test {
             }
         }
     }
+
+    class ResultTheGirdSearch {
+
+        /*
+         * Complete the 'gridSearch' function below.
+         *
+         * The function is expected to return a STRING.
+         * The function accepts following parameters:
+         *  1. STRING_ARRAY G
+         *  2. STRING_ARRAY P
+         */
+
+        public static String gridSearch(List<String> G, List<String> P) {
+            // Write your code here
+            if (G.size() < P.size()) {
+                return "NO";
+            }
+            for (int i = 0; i < G.size(); i++) {
+                if (G.get(i).contains(P.get(0))) {
+                    int k = i + 1;
+                    boolean isPatternAvailable = true;
+                    List<Integer> startOfFirsts = findStartOfPatterns(G.get(i), P.get(0));
+                    for (int j = 1; j < P.size(); j++) {
+                        List<Integer> startOfOthers = findStartOfPatterns(G.get(k), P.get(j));
+                        startOfFirsts.removeIf(e -> !startOfOthers.contains(e));
+                        if (k >= G.size() || startOfFirsts.size() == 0) isPatternAvailable = false;
+                        k++;
+                    }
+                    if(isPatternAvailable) return "YES";
+                }
+            }
+            return "NO";
+        }
+
+        private static List<Integer> findStartOfPatterns(String gridRow, String patternRow) {
+            List<Integer> starts = new ArrayList<>();
+            for (int i = 0; i < gridRow.length(); i++) {
+                if (gridRow.charAt(i) == patternRow.charAt(0)) {
+                    boolean found = true;
+                    int k = i + 1;
+                    for (int j = 1; j < patternRow.length(); j++) {
+                        if (k >= gridRow.length() || gridRow.charAt(k) != patternRow.charAt(j)) found = false;
+                        k++;
+                    }
+                    if (found) starts.add(i);
+                }
+            }
+            return starts;
+        }
+    }
 }
 
 
