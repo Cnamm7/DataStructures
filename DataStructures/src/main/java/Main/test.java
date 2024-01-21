@@ -3484,6 +3484,50 @@ public class test {
             return starts;
         }
     }
+
+    class ResultClimbinTheLeaderboard {
+
+        /*
+         * Complete the 'climbingLeaderboard' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts following parameters:
+         *  1. INTEGER_ARRAY ranked
+         *  2. INTEGER_ARRAY player
+         */
+
+        public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
+            // Write your code here
+            Stack<Integer> rankStack = buildRankStack(ranked);
+            return buildPlayerRanks(player, rankStack);
+        }
+
+        private static Stack<Integer> buildRankStack(List<Integer> ranked) {
+            Stack<Integer> rankStack = new Stack<>();
+            for (int rank : ranked) {
+                if (rankStack.empty() || rankStack.peek() != rank) {
+                    rankStack.push(rank);
+                }
+            }
+            return rankStack;
+        }
+
+        private static List<Integer> buildPlayerRanks(List<Integer> player, Stack<Integer> rankStack) {
+            List<Integer> playerRanks = new ArrayList<>();
+            for (int score : player) {
+                while (rankStack.size() > 0 && rankStack.peek() < score) {
+                    rankStack.pop();
+                }
+                if (rankStack.size() == 0) {
+                    playerRanks.add(1);
+                    rankStack.push(score);
+                } else {
+                    playerRanks.add(rankStack.peek() > score ? rankStack.size() + 1 : rankStack.size());
+                }
+            }
+            return playerRanks;
+        }
+    }
 }
 
 
