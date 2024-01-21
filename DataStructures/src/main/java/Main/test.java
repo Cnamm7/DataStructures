@@ -3528,6 +3528,24 @@ public class test {
             return playerRanks;
         }
     }
+
+    class ResultExtraLongFactorials {
+
+        /*
+         * Complete the 'extraLongFactorials' function below.
+         *
+         * The function accepts INTEGER n as parameter.
+         */
+
+        public static void extraLongFactorials(int n) {
+            // Write your code here
+            BigInteger big = BigInteger.ONE;
+            for (int i = 2; i <= n; i++) {
+                big = big.multiply(new BigInteger(Integer.toString(i)));
+            }
+            System.out.println(big);
+        }
+    }
 }
 
 
