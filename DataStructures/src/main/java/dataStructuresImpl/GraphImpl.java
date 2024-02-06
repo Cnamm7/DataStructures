@@ -106,13 +106,13 @@ public class GraphImpl implements Graph {
         Set<String> seen = new HashSet<>();
         // creating Stack for Last-in first-out functionality, the reason is for start from a vertex and go as far as it can deeply
         // into the given path, and then come back and go in another unexplored path
-        Stack<String> BFSQueue = new Stack<>();
+        Stack<String> DFSStack = new Stack<>();
         // adding the first vertex to start the search
-        BFSQueue.push(vertex);
+        DFSStack.push(vertex);
         // creating a while loop for iterating until the end of the list
-        while (BFSQueue.size() > 0) {
+        while (DFSStack.size() > 0) {
             // getting the current and the head of the Stack
-            String current = BFSQueue.pop();
+            String current = DFSStack.pop();
             // if it is not in already seen list it's going to print that and add it to already seen list
             if (!seen.contains(current)) {
                 System.out.println(current + " ");
@@ -121,7 +121,7 @@ public class GraphImpl implements Graph {
             // going to add all the connections that the current vertex has with others, if they are already not have been seen
             for (String vertecis : adjList.get(current)) {
                 if (!seen.contains(vertecis)) {
-                    BFSQueue.push(vertecis);
+                    DFSStack.push(vertecis);
                 }
             }
         }
